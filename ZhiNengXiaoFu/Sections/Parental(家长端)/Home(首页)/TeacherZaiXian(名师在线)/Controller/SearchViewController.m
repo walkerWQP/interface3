@@ -11,8 +11,6 @@
 #import "SearchView.h"
 
 
-
-
 @interface SearchViewController ()<UISearchBarDelegate>
 
 @property (nonatomic, strong) UISearchBar          *searchBar;
@@ -153,7 +151,6 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     [self pushToSearchResultWithSearchStr:searchBar.text];
-    
 }
 
 

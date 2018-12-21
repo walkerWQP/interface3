@@ -307,3 +307,17 @@
 //教师删除自己发布的名师在线视频
 #define DeleteUploadURL [NSString stringWithFormat:@"%@index/online/delete_upload",YUMING]
 
+//班主任添加课节
+#define AddTimeURL [NSString stringWithFormat:@"%@index/syllabus/add_time",YUMING]
+
+//班主获取自己添加课节列表
+#define GetTimeListURL [NSString stringWithFormat:@"%@index/syllabus/get_time_list",YUMING]
+
+//班主修改自己添加的课节及课程
+#define UpdateTimeURL [NSString stringWithFormat:@"%@index/syllabus/update_time",YUMING]
+
+//班主删除自己添加的课节
+#define DelTimeURL [NSString stringWithFormat:@"%@index/syllabus/del_time",YUMING]
+
+//家长、教师、班主任查看课程表
+#define GetCourseListURL [NSString stringWithFormat:@"%@index/syllabus/get_course_list",YUMING]

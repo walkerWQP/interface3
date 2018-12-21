@@ -10,7 +10,6 @@
 #import "TongZhiDetailsCell.h"
 #import "TongZhiDetailsModel.h"
 #import <WebKit/WebKit.h>
-//#import "UIView+XXYViewFrame.h"
 #import "ChangeViewController.h"
 
 @interface WorkDetailsViewController ()<UITableViewDelegate, UITableViewDataSource,WKUIDelegate,WKNavigationDelegate>
@@ -20,6 +19,7 @@
 @property (nonatomic, strong) TongZhiDetailsCell  *tongZhiDetailsCell;
 @property (nonatomic, strong) NSMutableArray      *imgAry;
 @property (nonatomic, assign) CGFloat             Hnew;
+@property (nonatomic, assign) CGFloat             currentHeight;
 
 @end
 
@@ -55,7 +55,7 @@
     } else {
         
     }
-
+    
     if ([self.typeID isEqualToString:@"1"]) {
         NSLog(@"1");
         UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -79,7 +79,7 @@
 
 - (UITableView *)WorkDetailsTableView {
     if (!_WorkDetailsTableView) {
-        self.WorkDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
+        self.WorkDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStyleGrouped];
         self.WorkDetailsTableView.backgroundColor = backColor;
         self.WorkDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.WorkDetailsTableView.delegate = self;
@@ -109,7 +109,7 @@
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
             [self.tongZhiDetailsCell.PicView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
             self.workDetailsModel = [TongZhiDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
-//            [self.imgAry addObject:self.workDetailsModel.img];
+            //            [self.imgAry addObject:self.workDetailsModel.img];
             [self configureImage];
             [self.WorkDetailsTableView reloadData];
         } else {
@@ -175,11 +175,24 @@
     self.tongZhiDetailsCell.selectionStyle = UITableViewCellSelectionStyleNone;
     self.tongZhiDetailsCell.TongZhiDetailsTitleLabel.text = self.workDetailsModel.title;
     self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.text = self.workDetailsModel.content;
+    self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.textColor = [UIColor blackColor];
+    self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.alpha = 1;
     self.tongZhiDetailsCell.TongZhiDetailsTimeLabel.alpha = 1;
     self.tongZhiDetailsCell.TongZhiDetailsTimeLabel.text  = self.workDetailsModel.create_time;
     
+    
+    //    NSInteger width = APP_WIDTH - 30;
+    //    //        self.titleText = self.tongZhiDetailsModel.title;
+    //    NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
+    //    CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    //
+    //    NSLog(@"%f",size.height);
+    //    NSLog(@"%ld",indexPath.item);
+    
+    
+    
     if (self.Hnew ==0) {
-        self.tongZhiDetailsCell.webView.hidden = NO;
+        self.tongZhiDetailsCell.webView.hidden = YES;
         //            self.newsDetailsTopCell.webView.backgroundColor = BAKit_Color_Yellow_pod;
         self.tongZhiDetailsCell.webView.userInteractionEnabled = YES;
         self.tongZhiDetailsCell.webView.UIDelegate = self;
@@ -197,18 +210,20 @@
     
     NSString *heightString4 = @"document.body.scrollHeight";
     [webView evaluateJavaScript:heightString4 completionHandler:^(id _Nullable item, NSError * _Nullable error) {
-        CGFloat currentHeight = [item doubleValue];
+        self.currentHeight = [item doubleValue];
         NSInteger width = APP_WIDTH - 30;
         //        self.titleText = self.tongZhiDetailsModel.title;
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
         CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-        self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, currentHeight);
+        self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, self.currentHeight);
+        
         //                weak_self.communityDetailsCell.communityDetailsHegiht.constant = currentHeight;
-        self.Hnew = currentHeight;
-        NSLog(@"html 高度2：%f", currentHeight);
-        self.tongZhiDetailsCell.webView.hidden =NO;
-        self.tongZhiDetailsCell.TongZhiDetailsTWebopCon.constant = self.Hnew + 26;
-        self.tongZhiDetailsCell.webView.height = currentHeight;
+        self.Hnew = self.currentHeight;
+        NSLog(@"html 高度2：%f", self.currentHeight);
+        self.tongZhiDetailsCell.webView.hidden = YES;
+        self.tongZhiDetailsCell.TongZhiDetailsTWebopCon.constant = self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.frame.size.height + 26;
+        self.tongZhiDetailsCell.webView.height = self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.frame.size.height;
+        //self.currentHeight;
         [self.WorkDetailsTableView reloadData];
     }];
 }
@@ -220,16 +235,16 @@
     if (self.Hnew ==0) {
         if (self.workDetailsModel.img.count == 0) {
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
-            return 150 + size.height;
+            return 150 + self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.frame.size.height + 26;
         } else {
-            return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150 + size.height;
+            return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150 + self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.frame.size.height + 26;
         }
     } else {
         if (self.workDetailsModel.img.count == 0) {
             self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant = 0;
-            return 150 + size.height + self.Hnew;
+            return APP_HEIGHT + self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.frame.size.height + 26 + self.Hnew;
         } else {
-            return  self.tongZhiDetailsCell.CommunityDetailsImageViewHegit.constant + 150  + size.height + self.Hnew;
+            return  APP_HEIGHT  + self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.frame.size.height + 26 + self.Hnew;
         }
     }
 }

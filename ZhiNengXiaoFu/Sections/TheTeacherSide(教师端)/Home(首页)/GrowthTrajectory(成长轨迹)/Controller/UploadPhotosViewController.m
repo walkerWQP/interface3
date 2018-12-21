@@ -60,7 +60,7 @@
     
     self.ReleasedAlbumsScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     self.ReleasedAlbumsScrollView.backgroundColor = backColor;
-    self.ReleasedAlbumsScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
+    self.ReleasedAlbumsScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.5);
     self.ReleasedAlbumsScrollView.bounces = YES;
     self.ReleasedAlbumsScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     

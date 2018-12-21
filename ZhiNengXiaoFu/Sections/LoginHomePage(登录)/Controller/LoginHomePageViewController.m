@@ -99,7 +99,7 @@
     [self.view addSubview:jiZhuLoginState];
     
     //家长
-     self.parentLabel = [[UILabel alloc] initWithFrame:CGRectMake(passWordView.frame.origin.x + passWordView.frame.size.width  - 28, self.chooseBtn.frame.origin.y, 28, 13)];
+     self.parentLabel = [[UILabel alloc] initWithFrame:CGRectMake(passWordView.frame.origin.x + passWordView.frame.size.width + 10, self.chooseBtn.frame.origin.y, 28, 13)];
      self.parentLabel.textColor =  COLOR(170, 170, 170, 1);
      self.parentLabel.text = @"家长";
      self.parentLabel.font = [UIFont systemFontOfSize:13];
@@ -139,7 +139,7 @@
     [self.view addSubview:teacherChooseBtn];
     
     //登录
-    UIButton *loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(userName.frame.origin.x, jiZhuLoginState.frame.origin.y + jiZhuLoginState.frame.size.height + 42, APP_WIDTH - 132, 40)];
+    UIButton *loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(userName.frame.origin.x, jiZhuLoginState.frame.origin.y + jiZhuLoginState.frame.size.height + 32, APP_WIDTH - 132, 40)];
 //    loginBtn.backgroundColor = COLOR(57, 218, 175, 1);
     [loginBtn setTitle:@"立即登录" forState:UIControlStateNormal];
     [loginBtn setBackgroundImage:[UIImage imageNamed:@"登录按钮"] forState:UIControlStateNormal];
@@ -151,7 +151,7 @@
     loginBtn.userInteractionEnabled = YES;
     [self.view addSubview:loginBtn];
     
-    self.youkeLogin = [[UIButton alloc] initWithFrame:CGRectMake(APP_WIDTH  - 60 - 66, loginBtn.frame.origin.y + loginBtn.frame.size.height + 15, 60, 20)];
+    self.youkeLogin = [[UIButton alloc] initWithFrame:CGRectMake(APP_WIDTH  - 60 - 66, loginBtn.frame.origin.y + loginBtn.frame.size.height + 10, 60, 20)];
     [self.youkeLogin setTitle:@"游客登录" forState:UIControlStateNormal];
     self.youkeLogin.titleLabel.textAlignment = NSTextAlignmentRight;
     [self.youkeLogin addTarget:self action:@selector(youkeLogin:) forControlEvents:UIControlEventTouchDown];

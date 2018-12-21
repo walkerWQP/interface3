@@ -7,13 +7,13 @@
 //
 
 #import "HaveToReplyViewController.h"
-#import "HaveToReplyCell.h"
 #import "ConsultListModel.h"
+#import "YiHuiFuCell.h"
 
-@interface HaveToReplyViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface HaveToReplyViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray         *haveToReplyArr;
-@property (nonatomic, strong) UICollectionView       *haveToReplyCollectionView;
+@property (nonatomic, strong) UITableView            *haveToReplyTableView;
 @property (nonatomic, assign) NSInteger              page;
 @property (nonatomic, strong) UIImageView            *zanwushuju;
 @property (nonatomic, strong) PersonInformationModel *personInfo;
@@ -33,22 +33,28 @@
     [super viewWillAppear:animated];
     self.page = 1;
     //下拉刷新
-    self.haveToReplyCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
+    self.haveToReplyTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
     //自动更改透明度
-    self.haveToReplyCollectionView.mj_header.automaticallyChangeAlpha = YES;
+    self.haveToReplyTableView.mj_header.automaticallyChangeAlpha = YES;
     //进入刷新状态
-    [self.haveToReplyCollectionView.mj_header beginRefreshing];
+    [self.haveToReplyTableView.mj_header beginRefreshing];
     //上拉刷新
-    self.haveToReplyCollectionView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
+    self.haveToReplyTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self makeHaveToReplyViewControllerUI];
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
     self.zanwushuju.alpha = 0;
-    [self.haveToReplyCollectionView addSubview:self.zanwushuju];
+    [self.haveToReplyTableView addSubview:self.zanwushuju];
+    
+    self.haveToReplyTableView.delegate = self;
+    self.haveToReplyTableView.dataSource = self;
+    
+    [self.view addSubview:self.haveToReplyTableView];
+    self.haveToReplyTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.haveToReplyTableView registerNib:[UINib nibWithNibName:@"YiHuiFuCell" bundle:nil] forCellReuseIdentifier:@"YiHuiFuCellID"];
 }
 
 - (void)loadNewTopic {
@@ -66,9 +72,9 @@
     NSDictionary *dic = @{@"key":[UserManager key], @"status":@1,@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:ConsultConsultList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         //结束头部刷新
-        [self.haveToReplyCollectionView.mj_header endRefreshing];
+        [self.haveToReplyTableView.mj_header endRefreshing];
         //结束尾部刷新
-        [self.haveToReplyCollectionView.mj_footer endRefreshing];
+        [self.haveToReplyTableView.mj_footer endRefreshing];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             NSMutableArray *arr = [ConsultListModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
             for (ConsultListModel *model in arr) {
@@ -79,7 +85,7 @@
                 self.zanwushuju.alpha = 1;
             } else {
                 self.zanwushuju.alpha = 0;
-                [self.haveToReplyCollectionView reloadData];
+                [self.haveToReplyTableView reloadData];
             }
             
         } else {
@@ -97,71 +103,77 @@
     
 }
 
-- (void)makeHaveToReplyViewControllerUI {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    layout.sectionInset = UIEdgeInsetsMake(10, 0, 0, 0);
-    self.haveToReplyCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40) collectionViewLayout:layout];
-    self.haveToReplyCollectionView.backgroundColor = backColor;
-    self.haveToReplyCollectionView.delegate = self;
-    self.haveToReplyCollectionView.dataSource = self;
-    [self.view addSubview:self.haveToReplyCollectionView];
-    [self.haveToReplyCollectionView registerClass:[HaveToReplyCell class] forCellWithReuseIdentifier:HaveToReplyCell_CollectionView];
+- (UITableView *)haveToReplyTableView {
+    if (!_haveToReplyTableView) {
+        self.haveToReplyTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40) style:UITableViewStylePlain];
+        self.haveToReplyTableView.backgroundColor = backColor;
+        self.haveToReplyTableView.delegate = self;
+        self.haveToReplyTableView.dataSource = self;
+        _haveToReplyTableView.estimatedRowHeight = 0;
+        _haveToReplyTableView.estimatedSectionHeaderHeight = 0;
+        _haveToReplyTableView.estimatedSectionFooterHeight = 0;
+    }
+    return _haveToReplyTableView;
 }
 
-#pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return nil;
+}
+
+//有时候tableview的底部视图也会出现此现象对应的修改就好了
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return nil;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.haveToReplyArr.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *gridcell = nil;
-    HaveToReplyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HaveToReplyCell_CollectionView forIndexPath:indexPath];
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    YiHuiFuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YiHuiFuCellID" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (self.haveToReplyArr.count != 0) {
         ConsultListModel *model = [self.haveToReplyArr objectAtIndex:indexPath.row];
-        if ([model.s_headimg isEqualToString:@""]) {
-            cell.headImgView.image = [UIImage imageNamed:@"user"];
-        } else {
-            [cell.headImgView sd_setImageWithURL:[NSURL URLWithString:model.s_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
-        }
-        cell.problemLabel.text = [NSString stringWithFormat:@"%@%@问:", model.class_name ,model.student_name];
-        cell.problemContentLabel.text = model.question;
-        cell.problemContentLabel.isTop = YES;
-        if (model.t_headimg == nil) {
-            if ([self.personInfo.head_img isEqualToString:@""]) {
-                cell.headImageView.image = [UIImage imageNamed:@"user"];
-            } else {
-                [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:self.personInfo.head_img] placeholderImage:[UIImage imageNamed:@"user"]];
-            }
-        } else {
-            [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.t_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
-        }
-        cell.replyLabel.text = [NSString stringWithFormat:@"%@%@老师%@回复:", model.class_name, model.course_name, model.teacher_name];
-        cell.replyContentLabel.text = model.answer;
-        cell.replyContentLabel.isTop = YES;
-        gridcell = cell;
+        [cell.userIcon sd_setImageWithURL:[NSURL URLWithString:model.s_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
+        cell.userName.text = [NSString stringWithFormat:@"%@%@问:", model.class_name ,model.student_name];
+        cell.questionLabel.text = model.question;
+        [cell.userIconT sd_setImageWithURL:[NSURL URLWithString:model.t_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
+        cell.userNameT.text = [NSString stringWithFormat:@"%@%@老师%@回复:", model.class_name, model.course_name, model.teacher_name];
+        cell.questionLabelT.text = model.answer;
     }
-    return gridcell;
+    return cell;
+    
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 10;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize itemSize = CGSizeZero;
-    itemSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 0.3 + 70);
-    return itemSize;
-}
-
-
-//点击响应方法
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld",indexPath.row);
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSInteger width = APP_WIDTH - 30;
+    NSDictionary *attributes = @{NSFontAttributeName:[UIFont systemFontOfSize:14]};
+    if (self.haveToReplyArr.count != 0) {
+        ConsultListModel *model = [self.haveToReplyArr objectAtIndex:indexPath.row];
+        CGSize size = [model.question boundingRectWithSize:CGSizeMake(width, 100000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        CGSize size1 = [model.answer boundingRectWithSize:CGSizeMake(width, 100000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+        return 142 + size.height + size1.height + 10;
+    } else {
+        return 0;
+    }
+    
 }
 
 

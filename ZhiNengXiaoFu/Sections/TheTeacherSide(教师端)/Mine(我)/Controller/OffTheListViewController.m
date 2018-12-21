@@ -41,7 +41,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
-    [self getBannersURLData];
+    
     self.page = 1;
     //下拉刷新
     self.offTheListCollectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewTopic)];
@@ -59,6 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"请假列表";
+    [self getBannersURLData];
     [self makeOffTheListViewControllerUI];
     self.zanwushuju = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 105 / 2, 200, 105, 111)];
     self.zanwushuju.image = [UIImage imageNamed:@"暂无数据家长端"];
@@ -78,8 +79,10 @@
 }
 
 - (void)getOffTheListData:(NSInteger)page {
+    [WProgressHUD showHUDShowText:@"数据请求中..."];
     NSDictionary *dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:leaveLeaveList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
         //结束头部刷新
         [self.offTheListCollectionView.mj_header endRefreshing];
         //结束尾部刷新

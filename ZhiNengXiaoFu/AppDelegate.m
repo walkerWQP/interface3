@@ -55,7 +55,6 @@
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = YES;
     
-    //极光推送
     //添加初始化 APNs 代码
     //Required
     //notice: 3.0.0 及以后版本注册可以这样写，也可以继续用之前的注册方式
@@ -67,13 +66,15 @@
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-
+    
     [JPUSHService setupWithOption:launchOptions appKey:appKey channel:channel apsForProduction:isProduction advertisingIdentifier:nil];
     
     NSDictionary *remoteNotificationDic = nil;
-    if (launchOptions != nil) {
+    if (launchOptions != nil)
+    {
         remoteNotificationDic = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-        if (remoteNotificationDic != nil) {
+        if (remoteNotificationDic != nil)
+        {
             self.remoteNotificationUserInfo = remoteNotificationDic;
         }
     }
@@ -191,7 +192,8 @@
 
 //注册 APNs 成功并上报 DeviceToken
 - (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
     /// Required - 注册 DeviceToken
     [JPUSHService registerDeviceToken:deviceToken];
 }
@@ -246,113 +248,133 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] == nil) {
-        [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"notify"];
-
-    } else {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
         
-        if ([[userInfo objectForKey:@"identity"] isEqualToString:@"0"] || [[userInfo objectForKey:@"identity"] isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"]]) {
-            if ([[userInfo objectForKey:@"type"] isEqualToString:@"notice"]) {
-                TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
-                tongZhiDetails.tongZhiId = [userInfo objectForKey:@"id"];
-                
-                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"]) {
-                    tongZhiDetails.typeStr = @"1";
-                    
-                }
-                MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:tongZhiDetails];
-                
-                UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                while (rootViewController.presentedViewController)
-                {
-                    rootViewController = rootViewController.presentedViewController;
-                }
-                [rootViewController presentViewController:pushNav animated:YES completion:nil];
-                
-                
-            } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"homework"]) {
-                
-                WorkDetailsViewController * workDetailsVC = [[WorkDetailsViewController alloc] init];
-                workDetailsVC.workId = [userInfo objectForKey:@"id"];
-                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"]) {
-                    workDetailsVC.typeID = @"1";
-                }
-                MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:workDetailsVC];
-                UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                while (rootViewController.presentedViewController) {
-                    rootViewController = rootViewController.presentedViewController;
-                }
-                [rootViewController presentViewController:pushNav animated:YES completion:nil];
-            } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"consult"]) {
-             
-                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"]) {
-                    ConsultingViewController * consult = [[ConsultingViewController alloc] init];
-                    MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:consult];
-                    UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController) {
-                        rootViewController = rootViewController.presentedViewController;
-                    }
-                    [rootViewController presentViewController:pushNav animated:YES completion:nil];
-                
-                } else if ([[userInfo objectForKey:@"identity"] isEqualToString:@"1"]) {
-                    WenTiZiXunViewController * wenTiZiXunVC = [[WenTiZiXunViewController alloc] init];
-                    MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:wenTiZiXunVC];
-                    UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController) {
-                        rootViewController = rootViewController.presentedViewController;
-                    }
-                    [rootViewController presentViewController:pushNav animated:YES completion:nil];
-                }
-            } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"leave"]) {
-                if ([[userInfo objectForKey:@"identity"] isEqualToString:@"2"]) {
-                    LeaveTheDetailsViewController *leaveTheDetailsVC = [LeaveTheDetailsViewController new];
-                    
-                    leaveTheDetailsVC.ID = [userInfo objectForKey:@"id"];
-                    
-                    MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:leaveTheDetailsVC];
-                    UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController) {
-                        rootViewController = rootViewController.presentedViewController;
-                    }
-                    [rootViewController presentViewController:pushNav animated:YES completion:nil];
-                } else {
-                    LeaveDetailsViewController *leaveTheDetailsVC = [LeaveDetailsViewController new];
-                    
-                    leaveTheDetailsVC.leaveDetailsId = [userInfo objectForKey:@"id"];
-                    
-                    MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:leaveTheDetailsVC];
-                    UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
-                    while (rootViewController.presentedViewController) {
-                        rootViewController = rootViewController.presentedViewController;
-                    }
-                    [rootViewController presentViewController:pushNav animated:YES completion:nil];
-                }
-             
-            }
-            
-            [[NSUserDefaults standardUserDefaults] setObject:@"push" forKey:@"notify"];
-        } else {
+    } else {
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"] == nil) {
             [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"notify"];
+            
+        } else {
+            
+            if ([userInfo objectForKey:@"identity"] != nil) {
+                //identity用户身份0全部，1家长，2教师
+                NSString *identityStr = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"identity"]];
+                
+                if ([identityStr isEqualToString:@"0"] || [identityStr isEqualToString:[[NSUserDefaults standardUserDefaults] objectForKey:@"chooseLoginState"]]) {
+                    
+                    if ([[userInfo objectForKey:@"type"] isEqualToString:@"notice"]) {
+                        TongZhiDetailsViewController * tongZhiDetails  = [[TongZhiDetailsViewController alloc] init];
+                        tongZhiDetails.tongZhiId = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"id"]];
+                        
+                        if ([identityStr isEqualToString:@"2"]) { //教师
+                            tongZhiDetails.typeStr = @"1";
+                        }
+                        MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:tongZhiDetails];
+                        
+                        UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+                        while (rootViewController.presentedViewController)
+                        {
+                            rootViewController = rootViewController.presentedViewController;
+                        }
+                        [rootViewController presentViewController:pushNav animated:YES completion:nil];
+                        
+                        
+                    }else if ([[userInfo objectForKey:@"type"] isEqualToString:@"homework"]) {
+                        
+                        WorkDetailsViewController * workDetailsVC = [[WorkDetailsViewController alloc] init];
+                        workDetailsVC.workId = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"id"]];
+                        if ([identityStr isEqualToString:@"2"])
+                        {
+                            workDetailsVC.typeID = @"1";
+                        }
+                        MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:workDetailsVC];
+                        UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+                        while (rootViewController.presentedViewController)
+                        {
+                            rootViewController = rootViewController.presentedViewController;
+                        }
+                        [rootViewController presentViewController:pushNav animated:YES completion:nil];
+                    } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"consult"]) {
+                        
+                        if ([identityStr isEqualToString:@"2"]) {
+                            ConsultingViewController * consult = [[ConsultingViewController alloc] init];
+                            MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:consult];
+                            UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+                            while (rootViewController.presentedViewController)
+                            {
+                                rootViewController = rootViewController.presentedViewController;
+                            }
+                            [rootViewController presentViewController:pushNav animated:YES completion:nil];
+                            
+                        } else if ([identityStr isEqualToString:@"1"]) {
+                            WenTiZiXunViewController * wenTiZiXunVC = [[WenTiZiXunViewController alloc] init];
+                            MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:wenTiZiXunVC];
+                            UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+                            while (rootViewController.presentedViewController)
+                            {
+                                rootViewController = rootViewController.presentedViewController;
+                            }
+                            [rootViewController presentViewController:pushNav animated:YES completion:nil];
+                            
+                        }
+                    } else if ([[userInfo objectForKey:@"type"] isEqualToString:@"leave"]) {
+                        if ([identityStr isEqualToString:@"2"]) {
+                            LeaveTheDetailsViewController *leaveTheDetailsVC = [LeaveTheDetailsViewController new];
+                            
+                            leaveTheDetailsVC.ID = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"id"]];
+                            
+                            MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:leaveTheDetailsVC];
+                            UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+                            while (rootViewController.presentedViewController)
+                            {
+                                rootViewController = rootViewController.presentedViewController;
+                            }
+                            [rootViewController presentViewController:pushNav animated:YES completion:nil];
+                            
+                        } else {
+                            LeaveDetailsViewController *leaveTheDetailsVC = [LeaveDetailsViewController new];
+                            
+                            leaveTheDetailsVC.leaveDetailsId = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"id"]];
+                            
+                            MainNavigationController *pushNav = [[MainNavigationController alloc] initWithRootViewController:leaveTheDetailsVC];
+                            UIViewController *rootViewController = [[UIApplication  sharedApplication] keyWindow].rootViewController;
+                            while (rootViewController.presentedViewController) {
+                                rootViewController = rootViewController.presentedViewController;
+                            }
+                            [rootViewController presentViewController:pushNav animated:YES completion:nil];
+                        }
+                        
+                    }
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject:@"push" forKey:@"notify"];
+                } else {
+                    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"notify"];
+                    
+                }
+            } else {
+                
+            }
         }
     }
+    
     completionHandler();  // 系统要求执行这个方法
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-
+    
     // Required, iOS 7 Support
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
     
-//    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-//    content.body = self.remoteNotificationUserInfo[@"data"][@"content"];
-//    content.userInfo = self.remoteNotificationUserInfo;
-//    content.sound = [UNNotificationSound defaultSound];
-//    [content setValue:@(YES) forKeyPath:@"shouldAlwaysAlertWhileAppIsForeground"];//很重要的设置
-//
-//    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"Notif" content:content trigger:nil];
-//    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-//    }];
+    //    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    //    content.body = self.remoteNotificationUserInfo[@"data"][@"content"];
+    //    content.userInfo = self.remoteNotificationUserInfo;
+    //    content.sound = [UNNotificationSound defaultSound];
+    //    [content setValue:@(YES) forKeyPath:@"shouldAlwaysAlertWhileAppIsForeground"];//很重要的设置
+    //
+    //    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"Notif" content:content trigger:nil];
+    //    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+    //    }];
 }
 
 //ios 系统6以下 不考虑
@@ -372,7 +394,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    if (@available(iOS 11.0, *)) {
+    if (@available(iOS 11.0, *))
+    {
         [UIApplication sharedApplication].applicationIconBadgeNumber = -1;
         [JPUSHService setBadge:0];
     } else {
@@ -388,11 +411,12 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     if ([SingletonHelper manager].force == 1) {
-
+        
         [self hsUpdateApp:[SingletonHelper manager].version force:[SingletonHelper manager].force];
     }
     
-    if (@available(iOS 11.0, *)) {
+    if (@available(iOS 11.0, *))
+    {
         [UIApplication sharedApplication].applicationIconBadgeNumber = -1;
         [JPUSHService setBadge:0];
     } else {
@@ -402,7 +426,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [JPUSHService setBadge:0];
         [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
     }
-//
+    //
 }
 
 
@@ -429,17 +453,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
             _persistentContainer = [[NSPersistentContainer alloc] initWithName:@"ZhiNengXiaoFu"];
             [_persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *storeDescription, NSError *error) {
                 if (error != nil) {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                     
-                    /*
-                     Typical reasons for an error here include:
-                     * The parent directory does not exist, cannot be created, or disallows writing.
-                     * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                     * The device is out of space.
-                     * The store could not be migrated to the current model version.
-                     Check the error message to determine what the actual problem was.
-                    */
                     NSLog(@"Unresolved error %@, %@", error, error.userInfo);
                     abort();
                 }
@@ -449,6 +463,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     return _persistentContainer;
 }
+
 
 #pragma mark - Core Data Saving support
 

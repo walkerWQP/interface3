@@ -484,8 +484,8 @@
 
 - (UITableView *)teacherOnlineTableView {
     if (!_teacherOnlineTableView) {
-        CGFloat H = kIPhoneX ? (self.view.bounds.size.height - 64 - 24 - 34) : self.view.bounds.size.height - 64;
-        self.teacherOnlineTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 42, APP_WIDTH, H) style:UITableViewStylePlain];
+        
+        self.teacherOnlineTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 42, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40) style:UITableViewStylePlain];
         self.teacherOnlineTableView.backgroundColor = backColor;
         self.teacherOnlineTableView.delegate = self;
         self.teacherOnlineTableView.dataSource = self;

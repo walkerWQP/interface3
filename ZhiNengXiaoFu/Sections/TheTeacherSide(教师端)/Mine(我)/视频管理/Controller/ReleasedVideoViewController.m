@@ -86,13 +86,13 @@
 
 - (void)makeReleasedVideoViewControllerUI {
     
-    self.typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 58, 28)];
+    self.typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 58, 28)];
     self.typeLabel.text = @"类型";
     self.typeLabel.font = [UIFont systemFontOfSize:16];
     self.typeLabel.textColor = RGB(51, 51, 51);
     [self.view addSubview:self.typeLabel];
     
-    self.typeView = [[UIView alloc] initWithFrame:CGRectMake(20, 15 + self.typeLabel.frame.size.height, APP_WIDTH - 40, 50)];
+    self.typeView = [[UIView alloc] initWithFrame:CGRectMake(10, 15 + self.typeLabel.frame.size.height, APP_WIDTH - 20, 50)];
     self.typeView.backgroundColor = [UIColor whiteColor];
     self.typeView.layer.masksToBounds = YES;
     self.typeView.layer.cornerRadius  = 5;
@@ -104,49 +104,49 @@
     self.changLabel.font = [UIFont systemFontOfSize:14];
     [self.typeView addSubview:self.changLabel];
     
-    self.degreeBtn = [[UIButton alloc] initWithFrame:CGRectMake(15 + self.changLabel.frame.size.width, 10, 80, 30)];
+    self.degreeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10 + self.changLabel.frame.size.width, 10, 65, 30)];
     [self.degreeBtn setTitle:@"教育程度" forState:UIControlStateNormal];
     [self.degreeBtn setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
     self.degreeBtn.layer.masksToBounds = YES;
     self.degreeBtn.layer.cornerRadius  = 5;
     self.degreeBtn.layer.borderWidth   = 1;
     self.degreeBtn.layer.borderColor = RGB(238, 238, 238).CGColor;
-    self.degreeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    self.degreeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.degreeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.degreeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [self.degreeBtn addTarget:self action:@selector(degreeBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
     [self.typeView addSubview:self.degreeBtn];
     
-    self.gradeBtn = [[UIButton alloc] initWithFrame:CGRectMake(25 + self.changLabel.frame.size.width + self.degreeBtn.frame.size.width, 10, 80, 30)];
+    self.gradeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20 + self.changLabel.frame.size.width + self.degreeBtn.frame.size.width, 10, 65, 30)];
     [self.gradeBtn setTitle:@"年级" forState:UIControlStateNormal];
     [self.gradeBtn setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
     self.gradeBtn.layer.masksToBounds = YES;
     self.gradeBtn.layer.cornerRadius  = 5;
     self.gradeBtn.layer.borderWidth   = 1;
     self.gradeBtn.layer.borderColor = RGB(238, 238, 238).CGColor;
-    self.gradeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    self.gradeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.gradeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.gradeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [self.gradeBtn addTarget:self action:@selector(gradeBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
     [self.typeView addSubview:self.gradeBtn];
     
-    self.subjectsBtn = [[UIButton alloc] initWithFrame:CGRectMake(35 + self.changLabel.frame.size.width + self.degreeBtn.frame.size.width + self.gradeBtn.frame.size.width, 10, 80, 30)];
+    self.subjectsBtn = [[UIButton alloc] initWithFrame:CGRectMake(30 + self.changLabel.frame.size.width + self.degreeBtn.frame.size.width + self.gradeBtn.frame.size.width, 10, 80, 30)];
     [self.subjectsBtn setTitle:@"科目" forState:UIControlStateNormal];
     [self.subjectsBtn setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
     self.subjectsBtn.layer.masksToBounds = YES;
     self.subjectsBtn.layer.cornerRadius  = 5;
     self.subjectsBtn.layer.borderWidth   = 1;
     self.subjectsBtn.layer.borderColor = RGB(238, 238, 238).CGColor;
-    self.subjectsBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    self.subjectsBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    self.subjectsBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.subjectsBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [self.subjectsBtn addTarget:self action:@selector(subjectsBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
     [self.typeView addSubview:self.subjectsBtn];
     
-    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 25 + self.typeLabel.frame.size.height + self.typeView.frame.size.height, 100, 20)];
+    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 25 + self.typeLabel.frame.size.height + self.typeView.frame.size.height, 100, 20)];
     self.nameLabel.text = @"视频名称";
     self.nameLabel.textColor = RGB(51, 51, 51);
     self.nameLabel.font = [UIFont systemFontOfSize:16];
     [self.view addSubview:self.nameLabel];
     
-    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 35 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height, APP_WIDTH - 40, 40)];
+    self.nameTextField = [[UITextField alloc] initWithFrame:CGRectMake(10, 35 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height, APP_WIDTH - 20, 40)];
     self.nameTextField.backgroundColor = [UIColor whiteColor];
     self.nameTextField.layer.masksToBounds = YES;
     self.nameTextField.layer.cornerRadius = 5;
@@ -158,13 +158,13 @@
     self.nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.view addSubview:self.nameTextField];
     
-    self.IntroductionLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 45 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height, 200, 20)];
+    self.IntroductionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 45 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height, 200, 20)];
     self.IntroductionLabel.text = @"视频简介";
     self.IntroductionLabel.textColor = RGB(51, 51, 51);
     self.IntroductionLabel.font = [UIFont systemFontOfSize:16];
     [self.view addSubview:self.IntroductionLabel];
     
-    self.IntroductionTextView = [[WTextView alloc] initWithFrame:CGRectMake(20, 55 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height + self.IntroductionLabel.frame.size.height, APP_WIDTH - 40, APP_HEIGHT * 0.3)];
+    self.IntroductionTextView = [[WTextView alloc] initWithFrame:CGRectMake(10, 55 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height + self.IntroductionLabel.frame.size.height, APP_WIDTH - 20, APP_HEIGHT * 0.3)];
     self.IntroductionTextView.backgroundColor = [UIColor whiteColor];
     self.IntroductionTextView.layer.masksToBounds = YES;
     self.IntroductionTextView.layer.cornerRadius = 5;
@@ -175,14 +175,14 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.IntroductionTextView];
     
-    self.videoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 65 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height + self.IntroductionLabel.frame.size.height + self.IntroductionTextView.frame.size.height, APP_WIDTH - 40, 20)];
+    self.videoLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 65 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height + self.IntroductionLabel.frame.size.height + self.IntroductionTextView.frame.size.height, APP_WIDTH - 40, 20)];
     self.videoLabel.text = @"上传视频（视频文件仅支持MP4格式）";
     self.videoLabel.textAlignment = NSTextAlignmentLeft;
     self.videoLabel.textColor = RGB(51, 51, 51);
     self.videoLabel.font = [UIFont systemFontOfSize:16];
     [self.view addSubview:self.videoLabel];
     
-    self.videoView = [[UIView alloc] initWithFrame:CGRectMake(20, 75 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height + self.IntroductionLabel.frame.size.height + self.IntroductionTextView.frame.size.height + self.videoLabel.frame.size.height, APP_WIDTH - 40, 100)];
+    self.videoView = [[UIView alloc] initWithFrame:CGRectMake(10, 75 + self.typeLabel.frame.size.height + self.typeView.frame.size.height + self.nameLabel.frame.size.height + self.nameTextField.frame.size.height + self.IntroductionLabel.frame.size.height + self.IntroductionTextView.frame.size.height + self.videoLabel.frame.size.height, APP_WIDTH - 20, 100)];
     self.videoView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.videoView];
     

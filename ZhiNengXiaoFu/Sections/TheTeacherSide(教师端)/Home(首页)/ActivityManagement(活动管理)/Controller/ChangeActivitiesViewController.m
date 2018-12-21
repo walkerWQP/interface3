@@ -46,7 +46,7 @@
     
     self.launchEventScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     self.launchEventScrollView.backgroundColor = backColor;
-    self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
+    self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.5);
     self.launchEventScrollView.bounces = YES;
     self.launchEventScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.launchEventScrollView.maximumZoomScale = 2.0;//最多放大到两倍
@@ -255,33 +255,7 @@
     
 }
 
-- (void)compareDate:(NSString*)aDate withDate:(NSString*)bDate {
-    NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
-    [dateformater setDateFormat:@"yyyy-MM-dd"];
-    NSDate *dta = [[NSDate alloc] init];
-    NSDate *dtb = [[NSDate alloc] init];
-    dta = [dateformater dateFromString:aDate];
-    dtb = [dateformater dateFromString:bDate];
-    NSComparisonResult result = [dta compare:dtb];
-    if (result == NSOrderedSame) {
-        NSLog(@"相等");
-        self.timeID = 0;
-        return;
-    } else if (result == NSOrderedAscending) {
-        //bDate比aDate大
-        NSLog(@"第二个比第一个大");
-        self.timeID = 0;
-        return;
-    } else if (result == NSOrderedDescending) {
-        //bDate比aDate小
-        NSLog(@"第二个比第一个小");
-        [WProgressHUD showErrorAnimatedText:@"开始时间不能小于结束时间"];
-        [self.beginTimeBtn setTitle:@"开始时间" forState:UIControlStateNormal];
-        [self.endTimeBtn setTitle:@"结束时间" forState:UIControlStateNormal];
-        self.timeID = 1;
-        return;
-    }
-}
+
 
 
 

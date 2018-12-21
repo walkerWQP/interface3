@@ -26,8 +26,10 @@
 #import "InformationCollectionController.h"
 #import "PublishJobModel.h"
 #import "ManagementViewController.h"
+#import "ClassScheduleViewController.h"
+#import "InformationCollectionModel.h"
 
-@interface MyViewController ()<UIAlertViewDelegate>
+@interface MyViewController ()<UIAlertViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray         *myArr;
 @property (nonatomic, strong) PersonInformationModel *model;
@@ -42,10 +44,22 @@
 @property (nonatomic, strong)  UIView                *bottom;
 @property (nonatomic, strong) NSMutableArray         *publishJobArr;
 @property (nonatomic, strong) PersonInformationModel *personInfoModel;
+@property (nonatomic, strong) NSString               *className;
+@property (nonatomic, strong) NSString               *classID;
+@property (nonatomic, strong) NSMutableArray         *classNameArr;
+@property (nonatomic, strong) UIScrollView           *myScrollView;
+
 
 @end
 
 @implementation MyViewController
+
+- (NSMutableArray *)classNameArr {
+    if (!_classNameArr) {
+        _classNameArr = [NSMutableArray array];
+    }
+    return _classNameArr;
+}
 
 - (NSMutableArray *)publishJobArr {
     if (!_publishJobArr) {
@@ -92,50 +106,65 @@
     [self setUser];
     [self setNetWorkNew];
     self.view.backgroundColor = [UIColor whiteColor];
+    CGRect rectOfStatusbar = [[UIApplication sharedApplication] statusBarFrame];
+    self.myScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, - rectOfStatusbar.size.height, APP_WIDTH, APP_HEIGHT)];
+    self.myScrollView.backgroundColor = backColor;
+    self.myScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
+    self.myScrollView.bounces = YES;
+    self.myScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
+    self.myScrollView.maximumZoomScale = 2.5;//最多放大到两倍
+    self.myScrollView.minimumZoomScale = 0.5;//最多缩小到0.5倍
+    //设置是否允许缩放超出倍数限制，超出后弹回
+    self.myScrollView.bouncesZoom = YES;
+    //设置委托
+    self.myScrollView.delegate = self;
+    [self.view addSubview:self.myScrollView];
+    
+    
     UIImageView *header = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenWidth * 226 / 375)];
     header.image = [UIImage imageNamed:@"背景图我的"];
-    [self.view addSubview:header];
+    [self.myScrollView addSubview:header];
     
     UIImageView *whiteImg = [[UIImageView alloc] initWithFrame:CGRectMake(15, 54 + APP_NAVH, kScreenWidth - 30, (kScreenWidth - 30) * 109 / 345 + 20)];
     whiteImg.image = [UIImage imageNamed:@"头像底"];
-    [self.view addSubview:whiteImg];
+    [self.myScrollView addSubview:whiteImg];
     
-    UIButton *person = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth - 7.5 - 25, APP_NAVH - 30 - 5, 15, 18)];
+    UIButton *person = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth - 7.5 - 25, APP_NAVH - 30, 15, 18)];
     [person setBackgroundImage:[UIImage imageNamed:@"个人信息"] forState:UIControlStateNormal];
     [person addTarget:self action:@selector(person:) forControlEvents:UIControlEventTouchDown];
     person.userInteractionEnabled = YES;
-    [self.view addSubview:person];
+    [self.myScrollView addSubview:person];
     
     UILabel *my = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 30, APP_NAVH - 30, 60, 22)];
     my.text = @"我的";
     my.textColor = [UIColor whiteColor];
     my.textAlignment = NSTextAlignmentCenter;
     my.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:18];
-    [self.view addSubview:my];
+    [self.myScrollView addSubview:my];
     
     self.touxiangIcon  = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, APP_NAVH + 9, 124, 124)];
     self.touxiangIcon.image = [UIImage imageNamed:@"头像"];
-    [self.view addSubview:self.touxiangIcon];
+    [self.myScrollView addSubview:self.touxiangIcon];
     
     UIButton *headBtn = [[UIButton alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 62, APP_NAVH + 9, 124, 124)];
     headBtn.backgroundColor = [UIColor clearColor];
     [headBtn addTarget:self action:@selector(headBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:headBtn];
+    [self.myScrollView addSubview:headBtn];
     
     self.iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenWidth / 2 - 50, 12 + APP_NAVH + 9, 100, 100)];
     self.iconImg.layer.cornerRadius = 50;
     self.iconImg.layer.masksToBounds = YES;
-    [self.view addSubview:self.iconImg];
+    [self.myScrollView addSubview:self.iconImg];
     
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     self.nameLabel.textColor = RGB(51, 51, 51);
     self.nameLabel.font = [UIFont systemFontOfSize:16];
-    [self.view addSubview:self.nameLabel];
+    [self.myScrollView addSubview:self.nameLabel];
     
     self.bottom = [[UIView alloc] initWithFrame:CGRectMake(0, whiteImg.frame.origin.y + whiteImg.frame.size.height + 10, kScreenWidth, 332)];
     self.bottom.userInteractionEnabled = YES;
-    [self.view addSubview:self.bottom];
+    [self.myScrollView addSubview:self.bottom];
     
     NSInteger width = (kScreenWidth - 60) / 3;
     UIView *hengOneView = [[UIView alloc] initWithFrame:CGRectMake(30 + width, 0, 1, 331)];
@@ -176,7 +205,7 @@
                     NSDictionary *dic = @{@"sign":signStr};
                     [WProgressHUD showHUDShowText:@"加载中..."];
                     [[HttpRequestManager sharedSingleton].sessionManger POST:EditTimgURL parameters:dic constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-                        NSData  *imageData = UIImageJPEGRepresentation(image,1);
+                        NSData  *imageData = UIImageJPEGRepresentation(image,0.3);
                         float length = [imageData length]/1000;
 
                         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -184,7 +213,7 @@
                         NSString *str = [formatter stringFromDate:[NSDate date]];
                         NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
                         if (length > 1280) {
-                            NSData *fData = UIImageJPEGRepresentation(image, 0.5);
+                            NSData *fData = UIImageJPEGRepresentation(image, 0.3);
                             [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
                         } else {
                             [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
@@ -346,10 +375,10 @@
                 if (self.model.dorm_open == 1) {
                     NSMutableArray *imgAry = [NSMutableArray array];
                     [imgAry removeAllObjects];
-                    imgAry =  [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"就寝管理新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集",@"视频管理", nil];
+                    imgAry =  [NSMutableArray arrayWithObjects:@"请假列表新",@"已发活动新",@"就寝管理新",@"修改密码新",@"绑定手机新",@"联系我们新",@"关注我们新",@"建议反馈新",@"信息采集",@"视频管理",@"课程管理", nil];
                     NSMutableArray *TitleAry = [NSMutableArray array];
                     [TitleAry removeAllObjects];
-                    TitleAry =  [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"就寝管理",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理",@"视频管理", nil];
+                    TitleAry =  [NSMutableArray arrayWithObjects:@"请假管理",@"已发活动",@"就寝管理",@"修改密码",@"绑定手机",@"联系我们",@"关注我们",@"建议反馈",@"信息管理",@"视频管理",@"课程管理", nil];
                     for (int i = 0; i < imgAry.count; i++) {
                         NSString *img  = [imgAry objectAtIndex:i];
                         NSString *title = [TitleAry objectAtIndex:i];
@@ -585,6 +614,13 @@
             
         }
             break;
+        case 10:
+        {
+            NSLog(@"课程管理");
+            [self getClassURLData1];
+            
+        }
+            break;
        
         default:
             break;
@@ -746,6 +782,106 @@
     }];
 }
 
+
+- (void)getClassURLData1 {
+    [WProgressHUD showHUDShowText:@"正在加载中..."];
+    NSDictionary *dic = @{@"key":[UserManager key]};
+    [[HttpRequestManager sharedSingleton] POST:GetAdviserClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
+        if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
+            self.classNameArr = [InformationCollectionModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
+            ClassScheduleViewController *classScheduleVC = [ClassScheduleViewController new];
+            NSMutableArray *ary = [@[]mutableCopy];
+            NSMutableArray *ary1 = [@[]mutableCopy];
+            for (InformationCollectionModel *model in self.classNameArr) {
+                [ary addObject:[NSString stringWithFormat:@"%@", model.name]];
+            }
+            if (ary.count == 0) {
+                [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+            } else {
+                classScheduleVC.className = ary[0];
+            }
+            
+            for (InformationCollectionModel *model in self.classNameArr) {
+                [ary1 addObject:[NSString stringWithFormat:@"%@", model.ID]];
+            }
+            if (ary1.count == 0) {
+                [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+            } else {
+                classScheduleVC.classID = ary1[0];
+            }
+            classScheduleVC.typeStr = @"1";
+            
+            [self.navigationController pushViewController:classScheduleVC animated:YES];
+            
+        } else {
+            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
+                [UserManager logoOut];
+            } else {
+                
+            }
+            [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+}
+
+#pragma mark - UIScrollViewDelegate
+//返回缩放时所使用的UIView对象
+- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return scrollView;
+}
+
+//开始缩放时调用
+- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view {
+    
+}
+
+//结束缩放时调用，告知缩放比例
+- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale {
+    
+}
+
+//已经缩放时调用
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
+    
+}
+
+//确定是否可以滚动到顶部
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+    return YES;
+}
+
+//滚动到顶部时调用
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView{
+    
+}
+
+//已经滚动时调用
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+}
+
+//开始进行拖动时调用
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+}
+
+//抬起手指停止拖动时调用，布尔值确定滚动到最后位置时是否需要减速
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+}
+
+//如果上面的方法决定需要减速继续滚动，则调用该方法，可以读取contentOffset属性，判断用户抬手位置（不是最终停止位置）
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+    
+}
+
+//减速完毕停止滚动时调用，这里的读取contentOffset属性就是最终停止位置
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    
+}
 
 
 @end

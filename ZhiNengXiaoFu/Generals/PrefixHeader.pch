@@ -66,6 +66,8 @@
 #import "SelPlayerConfiguration.h"
 #import "TGWebViewController.h"
 #import "JhDownProgressView.h"
+#import "YCMenuView.h"
+#import "DateTimePickerView.h"
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
 

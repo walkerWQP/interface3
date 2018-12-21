@@ -33,7 +33,7 @@
 - (void)makeReplyViewControllerUI {
     
     self.view.backgroundColor = backColor;
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, APP_HEIGHT * 0.3)];
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, APP_WIDTH - 20, APP_HEIGHT * 0.4)];
     self.bgView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.bgView];
     self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 60, 60)];
@@ -64,7 +64,7 @@
     self.lineView.backgroundColor = fengeLineColor;
     [self.bgView addSubview:self.lineView];
     
-    self.replyTextField = [[WTextView alloc] initWithFrame:CGRectMake(10, self.headImgView.frame.size.height + self.problemContentLabel.frame.size.height + 30, self.bgView.frame.size.width - 20, 110)];
+    self.replyTextField = [[WTextView alloc] initWithFrame:CGRectMake(10, self.headImgView.frame.size.height + self.problemContentLabel.frame.size.height + 30, self.bgView.frame.size.width - 20, 150)];
     self.replyTextField.backgroundColor = [UIColor whiteColor];
     self.replyTextField.layer.masksToBounds = YES;
     self.replyTextField.layer.cornerRadius = 5;
@@ -75,7 +75,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.bgView addSubview:self.replyTextField];
     
-    self.replyBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, self.bgView.frame.size.height + 60, APP_WIDTH - 40, 40)];
+    self.replyBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, self.bgView.frame.size.height + 120, APP_WIDTH - 40, 40)];
     self.replyBtn.backgroundColor = THEMECOLOR;
     [self.replyBtn setTitle:@"提交回复" forState:UIControlStateNormal];
     self.replyBtn.layer.masksToBounds = YES;

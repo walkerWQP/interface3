@@ -218,8 +218,6 @@
 		98AD7EA6210F11BD00641231 /* DidNotReturnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E3B210F11BC00641231 /* DidNotReturnViewController.m */; };
 		98AD7EA7210F11BD00641231 /* ReplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E40210F11BC00641231 /* ReplyViewController.m */; };
 		98AD7EA8210F11BD00641231 /* ConsultingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E41210F11BC00641231 /* ConsultingViewController.m */; };
-		98AD7EA9210F11BD00641231 /* HaveToReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E46210F11BC00641231 /* HaveToReplyCell.m */; };
-		98AD7EAA210F11BD00641231 /* DidNotReturnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E47210F11BC00641231 /* DidNotReturnCell.m */; };
 		98AD7EAB210F11BD00641231 /* PublicClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E4A210F11BC00641231 /* PublicClassViewController.m */; };
 		98AD7EAC210F11BD00641231 /* UploadVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E4E210F11BC00641231 /* UploadVideoViewController.m */; };
 		98AD7EAD210F11BD00641231 /* VideoSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98AD7E4F210F11BC00641231 /* VideoSettingsViewController.m */; };
@@ -301,6 +299,7 @@
 		CD4E2D6E216DDA01008F1DA2 /* HomePageJingJiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D69216DDA00008F1DA2 /* HomePageJingJiView.m */; };
 		CD4E2D74216DDA3B008F1DA2 /* PGIndexBannerSubiew.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */; };
 		CD4E2D75216DDA3B008F1DA2 /* NewPagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */; };
+		CD509F9421C7567000ABE98B /* ClassScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD509F9321C7566F00ABE98B /* ClassScheduleViewController.m */; };
 		CD815F6421B8C78E00738C87 /* CWUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F5C21B8C78E00738C87 /* CWUploadTask.m */; };
 		CD815F6521B8C78E00738C87 /* CWFileStreamSeparation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F5E21B8C78E00738C87 /* CWFileStreamSeparation.m */; };
 		CD815F6621B8C78E00738C87 /* CWFileUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F6121B8C78E00738C87 /* CWFileUploadManager.m */; };
@@ -310,6 +309,15 @@
 		CD815F7021B90B0300738C87 /* ManagementCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD815F6F21B90B0300738C87 /* ManagementCell.m */; };
 		CD81E21821B7B1FC002D0396 /* ManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD81E21721B7B1FC002D0396 /* ManagementViewController.m */; };
 		CD81E21B21B7B2D5002D0396 /* ReleasedVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD81E21A21B7B2D5002D0396 /* ReleasedVideoViewController.m */; };
+		CD87174221C87FB6006AD369 /* YCMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD87174121C87FB6006AD369 /* YCMenuView.m */; };
+		CD87174521C88290006AD369 /* AddLessonsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD87174421C88290006AD369 /* AddLessonsViewController.m */; };
+		CD87174821C88370006AD369 /* ClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD87174721C88370006AD369 /* ClassListViewController.m */; };
+		CD87174B21C88495006AD369 /* ClassListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD87174A21C88495006AD369 /* ClassListCell.m */; };
+		CD87174F21C89C42006AD369 /* DateTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD87174E21C89C42006AD369 /* DateTimePickerView.m */; };
+		CD87175221C8E9D7006AD369 /* ClassListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD87175121C8E9D7006AD369 /* ClassListModel.m */; };
+		CD8A6E6D21C9D93500BA5090 /* ClassScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8A6E6C21C9D93500BA5090 /* ClassScheduleModel.m */; };
+		CD8A6E7021C9ED4300BA5090 /* LeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8A6E6F21C9ED4300BA5090 /* LeftCell.m */; };
+		CD8A6E7321C9ED8B00BA5090 /* RightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8A6E7221C9ED8B00BA5090 /* RightCell.m */; };
 		CD93D03E219AA3BD00327AD6 /* UIView+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */; };
 		CD93D03F219AA3BD00327AD6 /* HW3DBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */; };
 		CD9C16BE216EED920094E897 /* TongZhiNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16BD216EED920094E897 /* TongZhiNewCell.m */; };
@@ -782,10 +790,6 @@
 		98AD7E3F210F11BC00641231 /* HaveToReplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaveToReplyViewController.h; sourceTree = "<group>"; };
 		98AD7E40210F11BC00641231 /* ReplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyViewController.m; sourceTree = "<group>"; };
 		98AD7E41210F11BC00641231 /* ConsultingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsultingViewController.m; sourceTree = "<group>"; };
-		98AD7E44210F11BC00641231 /* HaveToReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HaveToReplyCell.h; sourceTree = "<group>"; };
-		98AD7E45210F11BC00641231 /* DidNotReturnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DidNotReturnCell.h; sourceTree = "<group>"; };
-		98AD7E46210F11BC00641231 /* HaveToReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HaveToReplyCell.m; sourceTree = "<group>"; };
-		98AD7E47210F11BC00641231 /* DidNotReturnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DidNotReturnCell.m; sourceTree = "<group>"; };
 		98AD7E4A210F11BC00641231 /* PublicClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicClassViewController.m; sourceTree = "<group>"; };
 		98AD7E4B210F11BC00641231 /* ForClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForClassViewController.h; sourceTree = "<group>"; };
 		98AD7E4C210F11BC00641231 /* VideoSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSettingsViewController.h; sourceTree = "<group>"; };
@@ -946,6 +950,8 @@
 		CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPagedFlowView.m; sourceTree = "<group>"; };
 		CD4E2D72216DDA3B008F1DA2 /* PGIndexBannerSubiew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGIndexBannerSubiew.h; sourceTree = "<group>"; };
 		CD4E2D73216DDA3B008F1DA2 /* NewPagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPagedFlowView.h; sourceTree = "<group>"; };
+		CD509F9221C7566F00ABE98B /* ClassScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleViewController.h; sourceTree = "<group>"; };
+		CD509F9321C7566F00ABE98B /* ClassScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleViewController.m; sourceTree = "<group>"; };
 		CD815F5C21B8C78E00738C87 /* CWUploadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWUploadTask.m; sourceTree = "<group>"; };
 		CD815F5D21B8C78E00738C87 /* CWFileUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWFileUploadManager.h; sourceTree = "<group>"; };
 		CD815F5E21B8C78E00738C87 /* CWFileStreamSeparation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWFileStreamSeparation.m; sourceTree = "<group>"; };
@@ -964,6 +970,24 @@
 		CD81E21721B7B1FC002D0396 /* ManagementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManagementViewController.m; sourceTree = "<group>"; };
 		CD81E21921B7B2D5002D0396 /* ReleasedVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReleasedVideoViewController.h; sourceTree = "<group>"; };
 		CD81E21A21B7B2D5002D0396 /* ReleasedVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReleasedVideoViewController.m; sourceTree = "<group>"; };
+		CD87174021C87FB6006AD369 /* YCMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCMenuView.h; sourceTree = "<group>"; };
+		CD87174121C87FB6006AD369 /* YCMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCMenuView.m; sourceTree = "<group>"; };
+		CD87174321C88290006AD369 /* AddLessonsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddLessonsViewController.h; sourceTree = "<group>"; };
+		CD87174421C88290006AD369 /* AddLessonsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddLessonsViewController.m; sourceTree = "<group>"; };
+		CD87174621C88370006AD369 /* ClassListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassListViewController.h; sourceTree = "<group>"; };
+		CD87174721C88370006AD369 /* ClassListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassListViewController.m; sourceTree = "<group>"; };
+		CD87174921C88495006AD369 /* ClassListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassListCell.h; sourceTree = "<group>"; };
+		CD87174A21C88495006AD369 /* ClassListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassListCell.m; sourceTree = "<group>"; };
+		CD87174D21C89C42006AD369 /* DateTimePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateTimePickerView.h; sourceTree = "<group>"; };
+		CD87174E21C89C42006AD369 /* DateTimePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DateTimePickerView.m; sourceTree = "<group>"; };
+		CD87175021C8E9D7006AD369 /* ClassListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassListModel.h; sourceTree = "<group>"; };
+		CD87175121C8E9D7006AD369 /* ClassListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassListModel.m; sourceTree = "<group>"; };
+		CD8A6E6B21C9D93500BA5090 /* ClassScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleModel.h; sourceTree = "<group>"; };
+		CD8A6E6C21C9D93500BA5090 /* ClassScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleModel.m; sourceTree = "<group>"; };
+		CD8A6E6E21C9ED4300BA5090 /* LeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftCell.h; sourceTree = "<group>"; };
+		CD8A6E6F21C9ED4300BA5090 /* LeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftCell.m; sourceTree = "<group>"; };
+		CD8A6E7121C9ED8B00BA5090 /* RightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightCell.h; sourceTree = "<group>"; };
+		CD8A6E7221C9ED8B00BA5090 /* RightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightCell.m; sourceTree = "<group>"; };
 		CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Banner.m"; sourceTree = "<group>"; };
 		CD93D03B219AA3BD00327AD6 /* UIView+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Banner.h"; sourceTree = "<group>"; };
 		CD93D03C219AA3BD00327AD6 /* HW3DBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HW3DBannerView.h; sourceTree = "<group>"; };
@@ -1641,6 +1665,7 @@
 		042810652108070F00E2CA14 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				CD509F8E21C7561A00ABE98B /* ClassSchedule(班级课表) */,
 				04D04532213632830066D3AC /* JiuQinGuanLi(就寝管理) */,
 				042AA43C211D2E5900E3AACB /* ParentXueTangDetails(家长学堂详情) */,
 				047FB2142113EC0D00AED26D /* MyZiXun(我的咨询) */,
@@ -2312,6 +2337,8 @@
 				98849A04213F629C000722D5 /* UIButton+YasinTimerCategory.m */,
 				98849A1F213FB93A000722D5 /* UILabel+TextAlign.h */,
 				98849A20213FB93A000722D5 /* UILabel+TextAlign.m */,
+				CD87174021C87FB6006AD369 /* YCMenuView.h */,
+				CD87174121C87FB6006AD369 /* YCMenuView.m */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -2319,6 +2346,7 @@
 		043F391121016F8C00115A55 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				CD87174C21C89C21006AD369 /* 时间选择器 */,
 				CD9CC15B21BDFECD00C63FDF /* TGWebController */,
 				CDBC352A21BA72440085CC16 /* VideoPlayer */,
 				CD815F5B21B8C78E00738C87 /* CWUploadFile */,
@@ -2955,10 +2983,6 @@
 		98AD7E43210F11BC00641231 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				98AD7E44210F11BC00641231 /* HaveToReplyCell.h */,
-				98AD7E46210F11BC00641231 /* HaveToReplyCell.m */,
-				98AD7E45210F11BC00641231 /* DidNotReturnCell.h */,
-				98AD7E47210F11BC00641231 /* DidNotReturnCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3411,6 +3435,53 @@
 			path = NewPagedFlowView;
 			sourceTree = "<group>";
 		};
+		CD509F8E21C7561A00ABE98B /* ClassSchedule(班级课表) */ = {
+			isa = PBXGroup;
+			children = (
+				CD509F9121C7565000ABE98B /* Controller */,
+				CD509F9021C7564700ABE98B /* View */,
+				CD509F8F21C7563F00ABE98B /* Model */,
+			);
+			path = "ClassSchedule(班级课表)";
+			sourceTree = "<group>";
+		};
+		CD509F8F21C7563F00ABE98B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CD87175021C8E9D7006AD369 /* ClassListModel.h */,
+				CD87175121C8E9D7006AD369 /* ClassListModel.m */,
+				CD8A6E6B21C9D93500BA5090 /* ClassScheduleModel.h */,
+				CD8A6E6C21C9D93500BA5090 /* ClassScheduleModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CD509F9021C7564700ABE98B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CD87174921C88495006AD369 /* ClassListCell.h */,
+				CD87174A21C88495006AD369 /* ClassListCell.m */,
+				CD8A6E6E21C9ED4300BA5090 /* LeftCell.h */,
+				CD8A6E6F21C9ED4300BA5090 /* LeftCell.m */,
+				CD8A6E7121C9ED8B00BA5090 /* RightCell.h */,
+				CD8A6E7221C9ED8B00BA5090 /* RightCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CD509F9121C7565000ABE98B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CD509F9221C7566F00ABE98B /* ClassScheduleViewController.h */,
+				CD509F9321C7566F00ABE98B /* ClassScheduleViewController.m */,
+				CD87174621C88370006AD369 /* ClassListViewController.h */,
+				CD87174721C88370006AD369 /* ClassListViewController.m */,
+				CD87174321C88290006AD369 /* AddLessonsViewController.h */,
+				CD87174421C88290006AD369 /* AddLessonsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		CD815F5B21B8C78E00738C87 /* CWUploadFile */ = {
 			isa = PBXGroup;
 			children = (
@@ -3465,6 +3536,15 @@
 				CD81E21A21B7B2D5002D0396 /* ReleasedVideoViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CD87174C21C89C21006AD369 /* 时间选择器 */ = {
+			isa = PBXGroup;
+			children = (
+				CD87174D21C89C42006AD369 /* DateTimePickerView.h */,
+				CD87174E21C89C42006AD369 /* DateTimePickerView.m */,
+			);
+			path = "时间选择器";
 			sourceTree = "<group>";
 		};
 		CD9CC15B21BDFECD00C63FDF /* TGWebController */ = {
@@ -3821,6 +3901,7 @@
 				042AA45B211D8CA800E3AACB /* ClassHomeModel.m in Sources */,
 				98F0C7C5214F9B70009AEE15 /* NewDynamicsLayout.m in Sources */,
 				CD9C16C7216F1F1E0094E897 /* WorkNewTwoCell.m in Sources */,
+				CD8A6E6D21C9D93500BA5090 /* ClassScheduleModel.m in Sources */,
 				98AD7EB2210F11BD00641231 /* TomorrowViewController.m in Sources */,
 				0413D6A4210EE74900CB34A6 /* ShiPinListViewController.m in Sources */,
 				0429F60A210C696A00C32957 /* TeacherTongZhiCell.m in Sources */,
@@ -3845,6 +3926,7 @@
 				045A94FB2112E41D00030E56 /* IQUIScrollView+Additions.m in Sources */,
 				04D0453B21363B720066D3AC /* JiuQinPersonCell.m in Sources */,
 				0409A4222119754C004A9DB6 /* MHeadImaView.m in Sources */,
+				CD87174821C88370006AD369 /* ClassListViewController.m in Sources */,
 				98AD7EA8210F11BD00641231 /* ConsultingViewController.m in Sources */,
 				042D6F112137977F0004978E /* YiZhuQinViewController.m in Sources */,
 				98DD0C22211D2869004E0773 /* ReleasedAlbumsViewController.m in Sources */,
@@ -3872,8 +3954,10 @@
 				98AD7EC1210F11BD00641231 /* SchoolNoticeViewController.m in Sources */,
 				0429F619210C772000C32957 /* TongZhiDetailsViewController.m in Sources */,
 				04251B9721153EF90090CD3C /* WeiHuiFuViewController.m in Sources */,
+				CD87174B21C88495006AD369 /* ClassListCell.m in Sources */,
 				CD4E2D6C216DDA01008F1DA2 /* WorkCell.m in Sources */,
 				042895D6212E8EFC00044E0B /* WeiLanListModel.m in Sources */,
+				CD8A6E7321C9ED8B00BA5090 /* RightCell.m in Sources */,
 				042D6F0E21378BEC0004978E /* SleepManagementViewController.m in Sources */,
 				98850009216DDC5F00F09CB6 /* HomeTViewController.m in Sources */,
 				9813959E2105E61E00CDE2BA /* MyViewController.m in Sources */,
@@ -3906,7 +3990,6 @@
 				98D89E0A2110674200355626 /* AdviceFeedbackViewController.m in Sources */,
 				043F38EC21016DB700115A55 /* main.m in Sources */,
 				047FB2212114038400AED26D /* UserGetStuTeaModel.m in Sources */,
-				98AD7EA9210F11BD00641231 /* HaveToReplyCell.m in Sources */,
 				98F0C7F3214F9DC8009AEE15 /* NewDynamicsViewController.m in Sources */,
 				042895DA212E988F00044E0B /* WeiLanListCell.m in Sources */,
 				CD361D9B21BF633D00C23660 /* JhDownProgressView.m in Sources */,
@@ -3926,6 +4009,7 @@
 				0428109A2108070F00E2CA14 /* MineViewController.m in Sources */,
 				045A94FC2112E41D00030E56 /* IQUIView+Hierarchy.m in Sources */,
 				989B6053216F285200DDCC7B /* DCCycleScrollViewCell.m in Sources */,
+				CD87174521C88290006AD369 /* AddLessonsViewController.m in Sources */,
 				98F0C7EA214F9DAC009AEE15 /* NewDynamicsTableViewCell.m in Sources */,
 				047FB224211435E400AED26D /* SchoolDongTaiModel.m in Sources */,
 				CDB8513721B11EA900A8E9D5 /* STConst.m in Sources */,
@@ -3966,6 +4050,7 @@
 				CD9C16C2216EFFF40094E897 /* WorkNewCell.m in Sources */,
 				0471BED42122B4D000E7E22B /* KeChengJieShaonCell.m in Sources */,
 				98B6B6D02106B7BB00146DFD /* MyInformationCell.m in Sources */,
+				CD87174221C87FB6006AD369 /* YCMenuView.m in Sources */,
 				CD4E2D6A216DDA01008F1DA2 /* SchoolDongTaiCell.m in Sources */,
 				0413D6AA210EEAE200CB34A6 /* KeChengJieShaoCell.m in Sources */,
 				98F0C7DB214F9CBA009AEE15 /* SDBaseRefreshView.m in Sources */,
@@ -3986,7 +4071,9 @@
 				0413D6C4210F198E00CB34A6 /* WenTiZiXunViewController.m in Sources */,
 				04AB4DAC211855260070E548 /* QianDaoInModel.m in Sources */,
 				98E33E8221181D200098C241 /* LeaveTheDetailsViewController.m in Sources */,
+				CD509F9421C7567000ABE98B /* ClassScheduleViewController.m in Sources */,
 				0471BECB212267F200E7E22B /* UIView+Frame.m in Sources */,
+				CD87175221C8E9D7006AD369 /* ClassListModel.m in Sources */,
 				CDB7C38121B5164E00616C6A /* GradeModel.m in Sources */,
 				98E33E732117E2D90098C241 /* UIColor+HexString.m in Sources */,
 				CD9C16BE216EED920094E897 /* TongZhiNewCell.m in Sources */,
@@ -4013,6 +4100,7 @@
 				0432F2C42123CB0D00E78FB4 /* LTHeaderView.m in Sources */,
 				045A94F52112E41D00030E56 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				0409A4202119754C004A9DB6 /* MFlowLayOut.m in Sources */,
+				CD8A6E7021C9ED4300BA5090 /* LeftCell.m in Sources */,
 				045A94C92112D65200030E56 /* UserManager.m in Sources */,
 				9883A1C0212119D700E5BB07 /* JurisdictionMethod.m in Sources */,
 				045A94F72112E41D00030E56 /* IQKeyboardManager.m in Sources */,
@@ -4055,6 +4143,7 @@
 				CDB7C37B21B4CFF300616C6A /* SelectBtn.m in Sources */,
 				0428109D2108070F00E2CA14 /* PersonInfomationViewController.m in Sources */,
 				989BFE1521088D4B007A69A5 /* HomeWorkPViewController.m in Sources */,
+				CD87174F21C89C42006AD369 /* DateTimePickerView.m in Sources */,
 				989822BF211B029500D547C0 /* OngoingModel.m in Sources */,
 				04F30FB1214F455000013189 /* HomePageItemNCell.m in Sources */,
 				04AB4DA5211841820070E548 /* JingJiHuoDongListModel.m in Sources */,
@@ -4070,7 +4159,6 @@
 				989822BB211AF6DA00D547C0 /* WPublicManager.m in Sources */,
 				98D89DB5211002C200355626 /* SignClassViewController.m in Sources */,
 				0428109E2108070F00E2CA14 /* PersonInfomationCell.m in Sources */,
-				98AD7EAA210F11BD00641231 /* DidNotReturnCell.m in Sources */,
 				CDBC353A21BA72440085CC16 /* SelVideoSlider.m in Sources */,
 				CDBC353921BA72440085CC16 /* SelPlayerConfiguration.m in Sources */,
 				CDB7C37C21B4CFF300616C6A /* DKFilterSectionHeaderView.m in Sources */,
@@ -4287,8 +4375,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4308,8 +4396,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
-				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4323,8 +4411,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4344,8 +4432,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
-				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -153,6 +153,10 @@
         [cell.WeiHuiFuUserIconImg sd_setImageWithURL:[NSURL URLWithString:model.s_headimg] placeholderImage:[UIImage imageNamed:@"user"]];
         cell.WeiHuiFuNameLabel.text = [NSString stringWithFormat:@"%@%@问%@(%@):", model.class_name ,model.student_name, model.teacher_name, model.course_name];
         cell.WeiHuiFuQuestionLabel.text = model.question;
+        cell.WeiHuiFuBtn.backgroundColor = RGB(255,144,144);
+        cell.WeiHuiFuBtn.layer.masksToBounds = YES;
+        cell.WeiHuiFuBtn.layer.cornerRadius  = 5;
+        
     }
     return cell;
     

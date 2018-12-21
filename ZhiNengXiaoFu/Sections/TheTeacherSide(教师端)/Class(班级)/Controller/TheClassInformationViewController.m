@@ -215,9 +215,9 @@
     self.headImgView.image = [UIImage imageNamed:@"班级信息"];
     [self.backImgView addSubview:self.headImgView];
     
-    self.theClassInformationScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, APP_HEIGHT * 0.2, APP_WIDTH, APP_HEIGHT - APP_NAVH)];
+    self.theClassInformationScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, APP_HEIGHT * 0.2, APP_WIDTH, APP_HEIGHT * 0.8 - APP_NAVH - APP_TABH)];
     self.theClassInformationScrollView.backgroundColor = [UIColor clearColor];
-    self.theClassInformationScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT);
+    self.theClassInformationScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.5);
     self.theClassInformationScrollView.bounces = YES;
     self.theClassInformationScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.theClassInformationScrollView.maximumZoomScale = 2.0;//最多放大到两倍

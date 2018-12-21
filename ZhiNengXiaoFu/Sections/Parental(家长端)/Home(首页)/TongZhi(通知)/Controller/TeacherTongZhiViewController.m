@@ -98,7 +98,7 @@
 
 - (UITableView *)teacherTongZhiTableView {
     if (!_teacherTongZhiTableView) {
-        self.teacherTongZhiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - APP_TABH + 10) style:UITableViewStylePlain];
+        self.teacherTongZhiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40) style:UITableViewStylePlain];
         self.teacherTongZhiTableView.backgroundColor = [UIColor whiteColor];
         self.teacherTongZhiTableView.delegate = self;
         self.teacherTongZhiTableView.dataSource = self;

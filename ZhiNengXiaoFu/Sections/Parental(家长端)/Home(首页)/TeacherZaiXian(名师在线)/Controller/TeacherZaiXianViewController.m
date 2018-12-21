@@ -105,7 +105,6 @@
 }
 
 
-
 - (UITableView *)TeacherZaiXianTableView {
     if (!_TeacherZaiXianTableView) {
           CGFloat H = kIPhoneX ? (self.view.bounds.size.height - 64 - 24 - 34) : self.view.bounds.size.height - 64;

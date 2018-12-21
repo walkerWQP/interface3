@@ -129,7 +129,7 @@
     
     self.launchEventScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     self.launchEventScrollView.backgroundColor = backColor;
-    self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
+    self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.5);
     self.launchEventScrollView.bounces = YES;
     self.launchEventScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.launchEventScrollView.maximumZoomScale = 2.0;//最多放大到两倍
@@ -189,7 +189,8 @@
     [self.StartEndView addSubview:self.StartImg];
     
     self.StartLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.StartImg.frame.origin.x + self.StartImg.frame.size.width + 10, self.StartEndView.frame.size.height / 2 - 10, 90, 20)];
-    self.StartLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+    self.StartLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+    self.StartLabel.textAlignment = NSTextAlignmentLeft;
     self.StartLabel.textColor = COLOR(119, 119, 119, 1);
     if ([self.typeStr isEqualToString:@"1"]) {
         self.StartLabel.text = self.toSchoolSituationModel.start;
@@ -204,7 +205,8 @@
     [self.StartEndView addSubview:self.EndImg];
     
     self.EndLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.EndImg.frame.origin.x + self.EndImg.frame.size.width + 10, self.StartEndView.frame.size.height / 2 - 10, 90, 20)];
-    self.EndLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+    self.EndLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+    self.EndLabel.textAlignment = NSTextAlignmentLeft;
     self.EndLabel.textColor = COLOR(119, 119, 119, 1);
     if ([self.typeStr isEqualToString:@"1"]) {
         self.EndLabel.text = self.toSchoolSituationModel.end;

@@ -33,6 +33,7 @@
 #import "SchoolDongTaiDetailsViewController.h"
 #import <JPUSHService.h>
 #import "HomePageNumberModel.h"
+#import "ClassScheduleViewController.h"
 
 @interface HomeTViewController ()<NewPagedFlowViewDelegate, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate,DCCycleScrollViewDelegate>
 
@@ -415,8 +416,8 @@
             }
         }
        
-        NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表",@"问题咨询1",@"班级圈子",@"老师通知",@"新生指南1", nil];
-        NSMutableArray * titleAry = [NSMutableArray arrayWithObjects:@"请假列表",@"问题咨询",@"班级圈子",@"老师通知",@"新生指南", nil];
+        NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表",@"问题咨询1",@"班级圈子",@"老师通知",@"课堂表", nil];
+        NSMutableArray * titleAry = [NSMutableArray arrayWithObjects:@"请假列表",@"问题咨询",@"班级圈子",@"老师通知",@"班级课表", nil];
         NSInteger width = (kScreenWidth - 50 - 40 * 5) / 4;
 
         self.FiveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 90)];
@@ -805,8 +806,10 @@
         case 4:
         {
             NSLog(@"新生指南");
-            NewGuidelinesViewController *newGuidelinesVC = [NewGuidelinesViewController new];
-            [self.navigationController pushViewController:newGuidelinesVC animated:YES];
+//            NewGuidelinesViewController *newGuidelinesVC = [NewGuidelinesViewController new];
+//            [self.navigationController pushViewController:newGuidelinesVC animated:YES];
+            [self getClassURLData];
+            
         }
             break;
             
@@ -900,6 +903,44 @@
         
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
+    }];
+}
+
+- (void)getClassURLData {
+    [WProgressHUD showHUDShowText:@"正在加载中..."];
+    NSDictionary *dic = @{@"key":[UserManager key]};
+    [[HttpRequestManager sharedSingleton] POST:getClassURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
+        if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
+            self.publishJobArr = [PublishJobModel mj_objectArrayWithKeyValuesArray:[responseObject objectForKey:@"data"]];
+            NSMutableArray *ary = [@[]mutableCopy];
+            for (PublishJobModel * model in self.publishJobArr) {
+                [ary addObject:[NSString stringWithFormat:@"%@", model.ID]];
+            }
+            NSMutableArray *ary1 = [@[]mutableCopy];
+            for (PublishJobModel * model in self.publishJobArr) {
+                [ary1 addObject:[NSString stringWithFormat:@"%@", model.name]];
+            }
+            if (ary.count == 0 || ary1.count == 0) {
+                [WProgressHUD showErrorAnimatedText:@"数据不正确,请重试"];
+            } else {
+                self.className = ary1[0];
+                self.classID = ary[0];
+                ClassScheduleViewController *classScheduleVC = [ClassScheduleViewController new];
+                classScheduleVC.className = self.className;
+                classScheduleVC.classID   = self.classID;
+                [self.navigationController pushViewController:classScheduleVC animated:YES];
+            }
+            
+        } else {
+            if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
+                [UserManager logoOut];
+            } else {
+                
+            }
+            [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
 }
 

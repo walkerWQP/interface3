@@ -176,7 +176,7 @@
                     NSDictionary * params = @{@"key":[UserManager key],@"upload_type":@"img", @"upload_img_type":@"head_img",@"student_id":self.studentID};
                     [WProgressHUD showHUDShowText:@"加载中..."];
                     [[HttpRequestManager sharedSingleton].sessionManger POST:WENJIANSHANGCHUANJIEKOU parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-                        NSData  *imageData = UIImageJPEGRepresentation(image,1);
+                        NSData  *imageData = UIImageJPEGRepresentation(image,0.3);
                         float length = [imageData length]/1000;
                         
                         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -184,7 +184,7 @@
                         NSString *str = [formatter stringFromDate:[NSDate date]];
                         NSString *imageFileName = [NSString stringWithFormat:@"%@.jpeg", str];
                         if (length > 1280) {
-                            NSData *fData = UIImageJPEGRepresentation(image, 0.5);
+                            NSData *fData = UIImageJPEGRepresentation(image, 0.3);
                             [formData appendPartWithFileData:fData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];
                         } else {
                             [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"file"] fileName:imageFileName mimeType:@"image/jpeg"];

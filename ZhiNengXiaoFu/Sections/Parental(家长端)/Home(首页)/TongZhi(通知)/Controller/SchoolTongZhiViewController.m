@@ -133,7 +133,12 @@
 
 - (UITableView *)schoolTongZhiTableView {
     if (!_schoolTongZhiTableView) {
-        self.schoolTongZhiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - APP_TABH + 10) style:UITableViewStylePlain];
+        
+        if ([self.typeStr isEqualToString:@"1"]) {
+             self.schoolTongZhiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStylePlain];
+        } else {
+             self.schoolTongZhiTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40) style:UITableViewStylePlain];
+        }
         self.schoolTongZhiTableView.backgroundColor = backColor;
         self.schoolTongZhiTableView.delegate = self;
         self.schoolTongZhiTableView.dataSource = self;

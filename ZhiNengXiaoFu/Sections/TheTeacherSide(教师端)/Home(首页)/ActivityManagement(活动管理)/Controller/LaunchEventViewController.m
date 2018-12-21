@@ -72,7 +72,7 @@
     
     self.launchEventScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     self.launchEventScrollView.backgroundColor = backColor;
-    self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.2);
+    self.launchEventScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.5);
     self.launchEventScrollView.bounces = YES;
     self.launchEventScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.launchEventScrollView.maximumZoomScale = 2.0;//最多放大到两倍

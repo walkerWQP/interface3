@@ -100,7 +100,7 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.sectionInset = UIEdgeInsetsMake(180, 0, 0, 0);
-    self.teacherNotifiedCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) collectionViewLayout:layout];
+    self.teacherNotifiedCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) collectionViewLayout:layout];
     self.teacherNotifiedCollectionView.backgroundColor = backColor;
     self.teacherNotifiedCollectionView.delegate = self;
     self.teacherNotifiedCollectionView.dataSource = self;

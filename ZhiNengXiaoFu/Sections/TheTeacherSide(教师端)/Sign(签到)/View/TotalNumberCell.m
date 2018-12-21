@@ -20,7 +20,7 @@
 
 - (void)makeTotalNumberCellUI {
     
-    self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake(30, 10, 60, 60)];
+    self.headImgView = [[UIImageView alloc] initWithFrame:CGRectMake((self.contentView.frame.size.width - 60) / 2, 10, 60, 60)];
     self.headImgView.layer.masksToBounds = YES;
     self.headImgView.layer.cornerRadius  = 30;
     [self.contentView addSubview:self.headImgView];

@@ -33,7 +33,7 @@
 }
 
 - (NSArray <UIViewController *>*)setChildVC {
-    ChildJiaoYuViewController * vc1 = [[ChildJiaoYuViewController alloc]init];
+    ChildJiaoYuViewController *vc1 = [[ChildJiaoYuViewController alloc]init];
     HeartHealtyViewController *vc2 = [[HeartHealtyViewController alloc]init];
     NSArray *childVC = [NSArray arrayWithObjects:vc1,vc2, nil];
     return childVC;
@@ -42,7 +42,7 @@
 #pragma mark - getter
 - (JohnTopTitleView *)titleView {
     if (!_titleView) {
-        _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        _titleView = [[JohnTopTitleView alloc]initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
     }
     return _titleView;
 }

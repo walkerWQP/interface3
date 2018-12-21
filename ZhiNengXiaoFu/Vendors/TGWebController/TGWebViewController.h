@@ -6,9 +6,9 @@
 //  Copyright © 2017年 QR. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface TGWebViewController : UIViewController
+@interface TGWebViewController : BaseViewController
 
 
 /** 相关链接*/

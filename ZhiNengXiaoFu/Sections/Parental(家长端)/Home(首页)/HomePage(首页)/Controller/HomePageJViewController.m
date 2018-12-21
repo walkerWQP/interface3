@@ -31,6 +31,7 @@
 #import <JPUSHService.h>
 #import "TeacherOnlineViewController.h"
 #import "HomePageNumberModel.h"
+#import "ClassScheduleViewController.h"
 
 @interface HomePageJViewController ()<NewPagedFlowViewDelegate, NewPagedFlowViewDataSource, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate, DCCycleScrollViewDelegate>
 
@@ -448,8 +449,8 @@
             }
         }
         
-        NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"名师在线",@"新生指南",@"家长学堂",@"问题咨询",@"成长手册", nil];
-        NSMutableArray * titleAry = [NSMutableArray arrayWithObjects:@"名师在线",@"新生指南",@"家长学堂",@"问题咨询",@"班级圈子", nil];
+        NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"名师在线",@"班级课表",@"家长学堂",@"问题咨询",@"成长手册", nil];
+        NSMutableArray * titleAry = [NSMutableArray arrayWithObjects:@"名师在线",@"班级课表",@"家长学堂",@"问题咨询",@"班级圈子", nil];
         NSInteger width = (kScreenWidth - 50 - 40 * 5) / 4;
         
         self.FiveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 90)];
@@ -764,9 +765,12 @@
             break;
         case 1:
         {
-            NSLog(@"新生指南");
-            NewGuidelinesViewController *newGuidelinesVC = [NewGuidelinesViewController new];
-            [self.navigationController pushViewController:newGuidelinesVC animated:YES];
+            NSLog(@"班级课表");
+//            NewGuidelinesViewController *newGuidelinesVC = [NewGuidelinesViewController new];
+//            [self.navigationController pushViewController:newGuidelinesVC animated:YES];
+            ClassScheduleViewController *classScheduleVC = [ClassScheduleViewController new];
+            classScheduleVC.titleStr = @"课程表";
+            [self.navigationController pushViewController:classScheduleVC animated:YES];
         }
             break;
         case 2:

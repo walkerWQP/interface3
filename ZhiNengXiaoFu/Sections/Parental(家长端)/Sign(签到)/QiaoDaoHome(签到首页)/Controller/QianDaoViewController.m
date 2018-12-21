@@ -124,13 +124,14 @@
 
 - (UITableView *)QianDaoTableView {
     if (!_QianDaoTableView) {
-        self.QianDaoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStylePlain];
+        if ([self.typeID isEqualToString:@"1"]) {
+             self.QianDaoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStylePlain];
+        } else {
+             self.QianDaoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_TABH - APP_NAVH) style:UITableViewStylePlain];
+        }
+        
         self.QianDaoTableView.delegate = self;
         self.QianDaoTableView.dataSource = self;
-        self.QianDaoTableView.estimatedRowHeight = 0;
-        self.QianDaoTableView.estimatedSectionFooterHeight = 0;
-        self.QianDaoTableView.estimatedSectionHeaderHeight = 0;
-        self.QianDaoTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         self.QianDaoTableView.backgroundColor = backColor;
     }
     return _QianDaoTableView;
@@ -228,24 +229,9 @@
         //    //重复播放，默认不播放
         _playerView.repeatPlay = YES;
         //    //当前控制器是否支持旋转，当前页面支持旋转的时候需要设置，告知播放器
-       _playerView.isLandscape = NO;
-        //    //设置等比例全屏拉伸，多余部分会被剪切
-        //    _playerView.fillMode = ResizeAspectFill;
-        //    //设置进度条背景颜色
-        //    _playerView.progressBackgroundColor = [UIColor purpleColor];
-        //    //设置进度条缓冲颜色
-        //    _playerView.progressBufferColor = [UIColor redColor];
-        //    //设置进度条播放完成颜色
-        //    _playerView.progressPlayFinishColor = [UIColor greenColor];
-        //    //全屏是否隐藏状态栏
-        //    _playerView.fullStatusBarHidden = NO;
-        //    //是否静音，默认NO
-        //    _playerView.mute = YES;
-        //    //转子颜色
-        //    _playerView.strokeColor = [UIColor redColor];
-        //视频地址
-//             _playerView.url = [NSURL URLWithString:@"http://c31.aipai.com/user/128/31977128/1006/card/44340096/card.mp4?l=f&ip=1"];
-         _playerView.url = [NSURL URLWithString:model.video];
+        _playerView.isLandscape = NO;
+       
+        _playerView.url = [NSURL URLWithString:model.video];
         //播放
         [_playerView playVideo];
         //返回按钮点击事件回调
@@ -278,18 +264,13 @@
 }
 
 - (void)dingweiClick:(UIBarButtonItem *)sender {
-//    DingWeiViewController *VC = [[DingWeiViewController alloc] init];
-//    [self.navigationController pushViewController:VC animated:YES];
-   
+
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"location_urlStr"] != nil) {
         TGWebViewController *web = [[TGWebViewController alloc] init];
         web.url = [NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"location_urlStr"]];
         web.webTitle = @"一山智慧";
-//        web.progressColor = [UIColor blueColor];
         [self.navigationController pushViewController:web animated:YES];
     }
-    
-    
 }
 
 - (void)imgTap:(UITapGestureRecognizer *)sender {
@@ -313,26 +294,10 @@
 }
 
 #pragma mark -- 需要设置全局支持旋转方向，然后重写下面三个方法可以让当前页面支持多个方向
-//// 是否支持自动转屏
-//- (BOOL)shouldAutorotate {
-//    return NO;
-//}
-//
-////// 支持哪些屏幕方向
-//- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-//    return UIInterfaceOrientationMaskAll;
-//}
-//
-//// 默认的屏幕方向（当前ViewController必须是通过模态出来的UIViewController（模态带导航的无效）方式展现出来的，才会调用这个方法）
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-//    return UIInterfaceOrientationPortrait;
-//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation {
     return (toInterfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-
 
 - (BOOL)shouldAutorotate {
     return NO;

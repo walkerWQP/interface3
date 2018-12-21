@@ -77,7 +77,8 @@
 - (UILabel *)StartLabel {
     if (!_StartLabel) {
         self.StartLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.StartImg.frame.origin.x + self.StartImg.frame.size.width + 10, self.StartEndView.frame.size.height / 2 - 10, 90, 20)];
-        self.StartLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+        self.StartLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+        self.StartLabel.textAlignment = NSTextAlignmentLeft;
         self.StartLabel.textColor = COLOR(119, 119, 119, 1);
     }
     return _StartLabel;
@@ -94,7 +95,8 @@
 - (UILabel *)EndLabel {
     if (!_EndLabel) {
         self.EndLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.EndImg.frame.origin.x + self.EndImg.frame.size.width + 10, self.StartEndView.frame.size.height / 2 - 10, 90, 20)];
-        self.EndLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+        self.EndLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+        self.EndLabel.textAlignment = NSTextAlignmentLeft;
         self.EndLabel.textColor = COLOR(119, 119, 119, 1);
         
     }

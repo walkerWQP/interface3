@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationController.navigationBar.hidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = self.webTitle;
@@ -31,10 +31,13 @@
 
 - (void)setUpUI {
     
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 
-    backBtn.frame = CGRectMake(0, 0, 14, 28);
+    backBtn.frame = CGRectMake(0, 0, 28, 28);
     [backBtn setImage:[UIImage imageNamed:@"返回拷贝"] forState:UIControlStateNormal];
     [backBtn addTarget:self action:@selector(backButton:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
