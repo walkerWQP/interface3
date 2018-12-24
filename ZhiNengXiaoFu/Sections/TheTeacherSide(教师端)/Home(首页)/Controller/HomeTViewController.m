@@ -127,13 +127,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self setUser];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = backColor;
-    [self setUser];
     [self.view addSubview:self.HomePageJTabelView];
     self.HomePageJTabelView.backgroundColor = backColor;
     self.HomePageJTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;

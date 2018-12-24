@@ -119,7 +119,6 @@
 /** 点击取消 */
 - (void)cancelDidClick {
     [self.searchBar resignFirstResponder];
-    
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 

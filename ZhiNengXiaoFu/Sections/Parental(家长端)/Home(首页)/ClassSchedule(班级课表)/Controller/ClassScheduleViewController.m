@@ -341,7 +341,7 @@
     
     self.classScheduleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 40, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40)];
     self.classScheduleScrollView.backgroundColor = backColor;
-    self.classScheduleScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.8);
+    self.classScheduleScrollView.contentSize = CGSizeMake(APP_WIDTH, APP_HEIGHT * 1.9);
     self.classScheduleScrollView.bounces = YES;
     self.classScheduleScrollView.indicatorStyle = UIScrollViewIndicatorStyleDefault;
     self.classScheduleScrollView.maximumZoomScale = 2.5;//最多放大到两倍
@@ -456,8 +456,6 @@
     if ([self.typeStr isEqualToString:@"1"]) {
         if (self.classScheduleArr.count > 0) {
             NSDictionary *dic = [self.classScheduleArr objectAtIndex:sender.tag];
-            NSLog(@"%@",[dic objectForKey:@"day"]);
-            NSLog(@"%@",[dic objectForKey:@"id"]);
             
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"科目名称" preferredStyle:UIAlertControllerStyleAlert];
             
@@ -472,7 +470,9 @@
                 
                 if (userNameTextField.text.length <= 4) {
                     [sender setTitle:userNameTextField.text forState:UIControlStateNormal];
-                    
+                    if ([userNameTextField.text isEqualToString:@""]) {
+                        userNameTextField.text = @"";
+                    }
                     NSDictionary *dic1 = @{@"key":[UserManager key],@"id":[dic objectForKey:@"id"],@"course":userNameTextField.text,@"day":[dic objectForKey:@"day"]};
                     [self UpdateTimeURLData:dic1];
                 } else {

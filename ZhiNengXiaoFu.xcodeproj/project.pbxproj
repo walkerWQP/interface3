@@ -4375,8 +4375,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4396,8 +4396,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
+				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4411,8 +4411,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Henan Duxiu Technology Co., Ltd. (NBZT2UT4S6)";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4432,8 +4432,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
+				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

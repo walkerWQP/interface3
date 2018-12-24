@@ -147,7 +147,6 @@
 }
 
 - (void)delegateViewControllerDidClickwithString:(NSString *)string {
-    NSLog(@"%@",string);
     if (string != nil) {
         self.t_id = @"0";
         self.grade_id = @"0";
@@ -222,7 +221,6 @@
     [WProgressHUD showHUDShowText:@"数据加载中..."];
     [[HttpRequestManager sharedSingleton] POST:GetTypeListURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
         [WProgressHUD hideAllHUDAnimated:YES];
-//        [WProgressHUD showSuccessfulAnimatedText:[responseObject objectForKey:@"msg"]];
         if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
             [self.gradeArr1 removeAllObjects];
             [self.typeArr1 removeAllObjects];
@@ -368,7 +366,7 @@
     self.t_id = @"0";
     self.grade_id = @"0";
     for (DKFilterModel *model in self.filterView.filterModels) {
-        if(model == self.clickModel){
+        if(model == self.clickModel) {
             continue;
         }
         
@@ -484,7 +482,6 @@
 
 - (UITableView *)teacherOnlineTableView {
     if (!_teacherOnlineTableView) {
-        
         self.teacherOnlineTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 42, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40) style:UITableViewStylePlain];
         self.teacherOnlineTableView.backgroundColor = backColor;
         self.teacherOnlineTableView.delegate = self;
