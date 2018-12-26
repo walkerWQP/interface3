@@ -72,7 +72,7 @@
 
 - (UITableView *)tongZhiDetailsTableView {
     if (!_tongZhiDetailsTableView) {
-        self.tongZhiDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
+        self.tongZhiDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
         self.tongZhiDetailsTableView.backgroundColor = backColor;
         self.tongZhiDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tongZhiDetailsTableView.delegate = self;
@@ -91,7 +91,7 @@
             self.tongZhiDetailsModel = [TongZhiDetailsModel mj_objectWithKeyValues:[responseObject objectForKey:@"data"]];
             if ([self.typeStr isEqualToString:@"1"]) {
                if (self.tongZhiDetailsModel.is_school == 0) {
-                    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+                    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
                     [button setTitle:@"修改" forState:UIControlStateNormal];
                     button.titleLabel.font = titFont;
                     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -174,6 +174,7 @@
     self.tongZhiDetailsCell.TongZhiDetailsConnectLabel.text = self.tongZhiDetailsModel.content;
     self.tongZhiDetailsCell.TongZhiDetailsTimeLabel.text = self.tongZhiDetailsModel.create_time;
     if (self.Hnew ==0) {
+        [self.tongZhiDetailsCell addSubview:self.tongZhiDetailsCell.webView];
         self.tongZhiDetailsCell.webView.hidden = NO;
         self.tongZhiDetailsCell.webView.userInteractionEnabled = YES;
         self.tongZhiDetailsCell.webView.UIDelegate = self;
@@ -196,6 +197,7 @@
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
         CGSize size = [self.tongZhiDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
         self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, currentHeight);
+        [self.tongZhiDetailsCell addSubview:self.tongZhiDetailsCell.webView];
         self.Hnew = currentHeight;
         NSLog(@"html 高度2：%f", currentHeight);
         self.tongZhiDetailsCell.webView.hidden =NO;

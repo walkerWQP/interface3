@@ -30,7 +30,7 @@
         self.filterModels = @[];
         self.pickerChoices = @[];
      
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, SCREEN_HEIGHT) style:UITableViewStyleGrouped];//不用自定义style，需要设置背景
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, SCREEN_HEIGHT)];//不用自定义style，需要设置背景
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.dataSource = self;

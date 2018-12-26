@@ -102,7 +102,7 @@
 
 - (UITableView *)leaveDetailsTableView {
     if (!_leaveDetailsTableView) {
-        self.leaveDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStyleGrouped];
+        self.leaveDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH)];
         self.leaveDetailsTableView.backgroundColor = backColor;
         self.leaveDetailsTableView.dataSource = self;
         self.leaveDetailsTableView.delegate = self;

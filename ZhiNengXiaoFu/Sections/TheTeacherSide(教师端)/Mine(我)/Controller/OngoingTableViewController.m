@@ -70,8 +70,10 @@
 }
 
 -  (void)getActivityActivityListData:(NSInteger)page  {
+    [WProgressHUD showHUDShowText:@"数据请求中..."];
     NSDictionary *dic = @{@"key":[UserManager key],@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:myPublishURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
         //结束头部刷新
         [self.ongoingTableView.mj_header endRefreshing];
         //结束尾部刷新

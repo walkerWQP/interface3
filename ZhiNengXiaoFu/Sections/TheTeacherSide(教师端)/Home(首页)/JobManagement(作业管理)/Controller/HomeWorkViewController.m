@@ -11,6 +11,7 @@
 #import "HomeWorkModel.h"
 #import "PublishJobViewController.h"
 #import "WorkDetailsViewController.h"
+#import "ReadingViewController.h"
 
 
 @interface HomeWorkViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -71,7 +72,7 @@
     [self.view addSubview:self.homeWorkTableView];
     [self.homeWorkTableView registerClass:[TongZhiCell class] forCellReuseIdentifier:@"TongZhiCellId"];
     self.homeWorkTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [button setTitle:@"发布" forState:UIControlStateNormal];
     button.titleLabel.font = titFont;
     [button addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -204,7 +205,23 @@
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
     }];
-    return @[deleteAction];
+    
+    UITableViewRowAction *lookAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"阅读统计" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        NSLog(@"点击阅读统计");
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
+            [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
+        } else {
+            NSLog(@"点击阅读统计");
+            ReadingViewController *readingVC = [ReadingViewController new];
+            readingVC.type = @"2";
+            HomeWorkModel *model = [self.homeWorkArr objectAtIndex:indexPath.row];
+            readingVC.ID = model.ID;
+            readingVC.class_id = self.ID;
+            [self.navigationController pushViewController:readingVC animated:YES];
+        }
+    }];
+    lookAction.backgroundColor = tabBarColor;
+    return @[deleteAction,lookAction];
 }
 
 

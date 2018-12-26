@@ -84,7 +84,7 @@
 
 - (UITableView *)schoolDongTaiDetailsTableView {
     if (!_schoolDongTaiDetailsTableView) {
-        self.schoolDongTaiDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
+        self.schoolDongTaiDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
         self.schoolDongTaiDetailsTableView.backgroundColor = [UIColor whiteColor];
         self.schoolDongTaiDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.schoolDongTaiDetailsTableView.delegate = self;

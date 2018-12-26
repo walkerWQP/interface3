@@ -41,6 +41,7 @@
 @property (nonatomic, strong) UIImageView     *zanwushuju;
 @property (nonatomic, strong) NSString        *grade_id;
 @property (nonatomic, strong) NSString        *t_id;
+@property (nonatomic, strong) UIView          *backView;
 
 @end
 
@@ -185,8 +186,10 @@
 }
 
 - (void)setNetWork:(NSInteger)page {
+    [WProgressHUD showHUDShowText:@"数据请求中..."];
     NSDictionary *dic = @{@"key":[UserManager key], @"page":[NSString stringWithFormat:@"%ld",page], @"t_id":self.t_id,@"grade_id":self.grade_id};
     [[HttpRequestManager sharedSingleton] POST:VideoListURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
         //结束头部刷新
         [self.teacherOnlineTableView.mj_header endRefreshing];
         //结束尾部刷新
@@ -212,6 +215,7 @@
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
+        [WProgressHUD hideAllHUDAnimated:YES];
     }];
 }
 
@@ -312,12 +316,20 @@
     self.middleView.hidden  = YES;
     self.highView.hidden    = YES;
     
-    self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, 1, APP_WIDTH, 300)];
+    self.backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
+    self.backView.backgroundColor = [UIColor clearColor];
+    //[UIColor colorWithRed:0 / 255.0 green:0 / 255.0 blue:0 / 255.0 alpha:0.8];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:self.backView];
+    self.backView.hidden = YES;
+    
+    UITapGestureRecognizer *imgTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imgTap:)];
+    self.backView.userInteractionEnabled = YES;
+    [self.backView addGestureRecognizer:imgTap];
+    
+    self.headView = [[UIView alloc] initWithFrame:CGRectMake(0, 100, APP_WIDTH, 300)];
     self.headView.backgroundColor = [UIColor whiteColor];
-    [self.teacherOnlineTableView addSubview:self.headView];
+    [self.backView addSubview:self.headView];
     self.headView.hidden = YES;
-    
-    
     
 }
 
@@ -350,15 +362,15 @@
     [self.sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.headView addSubview:self.sureBtn];
     
-    UIButton *packBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, self.filterView.frame.size.height + 10, 70, 22)];
-    packBtn.backgroundColor = [UIColor whiteColor];
-    [packBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [packBtn addTarget:self action:@selector(packBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
-    packBtn.backgroundColor = RGB(0,172,241);
-    packBtn.layer.masksToBounds = YES;
-    packBtn.layer.cornerRadius  = 5;
-    [packBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.headView addSubview:packBtn];
+//    UIButton *packBtn = [[UIButton alloc] initWithFrame:CGRectMake(30, self.filterView.frame.size.height + 10, 70, 22)];
+//    packBtn.backgroundColor = [UIColor whiteColor];
+//    [packBtn setTitle:@"取消" forState:UIControlStateNormal];
+//    [packBtn addTarget:self action:@selector(packBtnSelector:) forControlEvents:UIControlEventTouchUpInside];
+//    packBtn.backgroundColor = RGB(0,172,241);
+//    packBtn.layer.masksToBounds = YES;
+//    packBtn.layer.cornerRadius  = 5;
+//    [packBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [self.headView addSubview:packBtn];
     
 }
 
@@ -372,6 +384,7 @@
         
         if (self.gradeArr.count == 0 || self.typeArr.count == 0) {
             [WProgressHUD showErrorAnimatedText:@"暂无数据"];
+            self.backView.hidden = YES;
             self.headView.hidden = YES;
             [self.filterView removeAllSubviews];
             self.filterView.hidden = YES;
@@ -396,6 +409,7 @@
                 }
             }
             if (![self.grade_id isEqualToString:@"0"] && ![self.t_id isEqualToString:@"0"]) {
+                self.backView.hidden = YES;
                 self.headView.hidden = YES;
                 [self.filterView removeAllSubviews];
                 self.filterView.hidden = YES;
@@ -423,6 +437,7 @@
     self.middleView.hidden  = YES;
     self.highView.hidden    = YES;
     self.headView.hidden    = YES;
+    self.backView.hidden    = YES;
     self.t_id = @"0";
     self.grade_id = @"0";
     self.page = 1;
@@ -433,6 +448,8 @@
 
 - (void)primaryBtnSelector:(UIButton *)sender {
     NSLog(@"点击小学");
+//    NSIndexPath *topRow = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.teacherOnlineTableView scrollToRowAtIndexPath:topRow atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [sender setTitleColor:RGB(0, 172, 241) forState:UIControlStateNormal];
     [self.allButton setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
     [self.middleBtn setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
@@ -442,12 +459,15 @@
     self.middleView.hidden  = YES;
     self.highView.hidden    = YES;
     self.headView.hidden    = NO;
+    self.backView.hidden    = NO;
     self.typeStr = @"1";
     [self GetTypeListURLData:self.typeStr];
 }
 
 - (void)middleBtnSelector:(UIButton *)sender {
     NSLog(@"点击中学");
+//    NSIndexPath *topRow = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.teacherOnlineTableView scrollToRowAtIndexPath:topRow atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [sender setTitleColor:RGB(0, 172, 241) forState:UIControlStateNormal];
     [self.allButton setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
     [self.primaryBtn setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
@@ -457,6 +477,7 @@
     self.middleView.hidden  = NO;
     self.highView.hidden    = YES;
     self.headView.hidden    = NO;
+    self.backView.hidden    = NO;
     self.typeStr = @"2";
     [self GetTypeListURLData:self.typeStr];
     
@@ -464,6 +485,8 @@
 
 - (void)highBtnSelector:(UIButton *)sender {
     NSLog(@"点击高中");
+//    NSIndexPath *topRow = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.teacherOnlineTableView scrollToRowAtIndexPath:topRow atScrollPosition:UITableViewScrollPositionTop animated:YES];
     [sender setTitleColor:RGB(0, 172, 241) forState:UIControlStateNormal];
     [self.allButton setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
     [self.primaryBtn setTitleColor:RGB(170, 170, 170) forState:UIControlStateNormal];
@@ -473,6 +496,7 @@
     self.middleView.hidden  = YES;
     self.highView.hidden    = NO;
     self.headView.hidden    = NO;
+    self.backView.hidden    = NO;
     self.typeStr = @"3";
     [self GetTypeListURLData:self.typeStr];
     
@@ -482,7 +506,7 @@
 
 - (UITableView *)teacherOnlineTableView {
     if (!_teacherOnlineTableView) {
-        self.teacherOnlineTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 42, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40) style:UITableViewStylePlain];
+        self.teacherOnlineTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 42, APP_WIDTH, APP_HEIGHT - APP_NAVH - 40)];
         self.teacherOnlineTableView.backgroundColor = backColor;
         self.teacherOnlineTableView.delegate = self;
         self.teacherOnlineTableView.dataSource = self;
@@ -553,11 +577,19 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     self.headView.hidden = YES;
+    self.backView.hidden = YES;
+    [self.filterView.tableView reloadData];
+}
+
+- (void)imgTap:(UITapGestureRecognizer *)sender {
+    self.headView.hidden = YES;
+    self.backView.hidden = YES;
     [self.filterView.tableView reloadData];
 }
 
 - (void)packBtnSelector:(UIButton *)sender {
     self.headView.hidden = YES;
+    self.backView.hidden = YES;
     [self.filterView removeAllSubviews];
     self.filterView.hidden = YES;
 }

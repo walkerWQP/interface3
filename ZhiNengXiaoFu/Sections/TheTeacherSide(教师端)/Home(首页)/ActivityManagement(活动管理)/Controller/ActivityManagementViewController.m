@@ -40,7 +40,7 @@
     [self.titleView setupViewControllerWithFatherVC:self childVC:[self setChildVC]];
     [self.view addSubview:self.titleView];
     
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [button setTitle:@"发布" forState:UIControlStateNormal];
     button.titleLabel.font = titFont;
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

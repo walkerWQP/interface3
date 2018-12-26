@@ -64,8 +64,10 @@
 }
 
 -  (void)getActivityActivityListData:(NSInteger)page  {
+    [WProgressHUD showHUDShowText:@"数据请求中..."];
     NSDictionary *dic = @{@"key":[UserManager key],@"status":@"3",@"page":[NSString stringWithFormat:@"%ld",page]};
     [[HttpRequestManager sharedSingleton] POST:activityActivityList parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        [WProgressHUD hideAllHUDAnimated:YES];
         //结束头部刷新
         [self.tomorrowCollectionView.mj_header endRefreshing];
         //结束尾部刷新

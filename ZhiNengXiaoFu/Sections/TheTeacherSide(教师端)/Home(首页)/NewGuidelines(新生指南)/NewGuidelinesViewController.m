@@ -109,7 +109,7 @@
 
 - (UITableView *)newGuidelinesTableView {
     if (!_newGuidelinesTableView) {
-        self.newGuidelinesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
+        self.newGuidelinesTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
         self.newGuidelinesTableView.backgroundColor = [UIColor whiteColor];
         self.newGuidelinesTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.newGuidelinesTableView.delegate = self;

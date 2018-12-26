@@ -42,6 +42,10 @@
     [self.managementTableView.mj_header beginRefreshing];
     //上拉刷新
     self.managementTableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreTopic)];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
+    
 }
 
 - (void)loadNewTopic {
@@ -58,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"视频管理";
-    self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [self.rightBtn setTitle:@"上传" forState:UIControlStateNormal];
     [self.rightBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;

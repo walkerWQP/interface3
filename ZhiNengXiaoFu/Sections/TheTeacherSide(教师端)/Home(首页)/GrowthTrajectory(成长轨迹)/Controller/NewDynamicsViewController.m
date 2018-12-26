@@ -146,7 +146,7 @@
         [self.classBtn addSubview:img];
     }
     
-    self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [self.rightBtn setImage:[UIImage imageNamed:@"相机"] forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;
     [self.rightBtn addTarget:self action:@selector(rightBtn:) forControlEvents:UIControlEventTouchUpInside];

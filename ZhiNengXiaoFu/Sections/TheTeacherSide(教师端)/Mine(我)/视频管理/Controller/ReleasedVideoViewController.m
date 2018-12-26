@@ -75,7 +75,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布视频";
-    self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [self.rightBtn setTitle:@"发布" forState:UIControlStateNormal];
     [self.rightBtn setTitleColor:RGB(51, 51, 51) forState:UIControlStateNormal];
     self.rightBtn.titleLabel.font = titFont;

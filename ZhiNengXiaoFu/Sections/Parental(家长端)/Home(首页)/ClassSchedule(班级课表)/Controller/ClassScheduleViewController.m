@@ -57,6 +57,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:18],NSForegroundColorAttributeName:[UIColor blackColor]}];
     if (self.titleStr != nil) {
         self.title = self.titleStr;
         NSDictionary *dic = @{@"key":[UserManager key]};
@@ -91,7 +94,6 @@
             }];
             self.arr = @[action];
             //            [self setUser];
-            
             NSDictionary * dic = @{@"key":[UserManager key]};
             [[HttpRequestManager sharedSingleton] POST:getUserInfoURL parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
                 if ([[responseObject objectForKey:@"status"] integerValue] == 200) {
@@ -117,30 +119,17 @@
                 NSLog(@"%@", error);
             }];
             
-            
-            
         } else {
             NSDictionary *dic = @{@"key":[UserManager key],@"class_id":self.classID};
             [self GetCourseListURLData:dic];
         }
-        
     }
-    
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
 }
-
-
-
-
-
-
 
 
 - (void)GetCourseListURLData:(NSDictionary *)dic {

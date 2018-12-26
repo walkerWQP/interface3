@@ -58,7 +58,7 @@
     
     if ([self.typeID isEqualToString:@"1"]) {
         NSLog(@"1");
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
         [button setTitle:@"修改" forState:UIControlStateNormal];
         button.titleLabel.font = titFont;
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -79,7 +79,7 @@
 
 - (UITableView *)WorkDetailsTableView {
     if (!_WorkDetailsTableView) {
-        self.WorkDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH) style:UITableViewStyleGrouped];
+        self.WorkDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH)];
         self.WorkDetailsTableView.backgroundColor = backColor;
         self.WorkDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.WorkDetailsTableView.delegate = self;
@@ -216,7 +216,7 @@
         NSDictionary *attributes = @{NSFontAttributeName:[UIFont fontWithName:@"PingFangSC-Semibold" size:30]};
         CGSize size = [self.workDetailsModel.title boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
         self.tongZhiDetailsCell.webView.frame = CGRectMake(10, 30 + size.height , APP_WIDTH - 20, self.currentHeight);
-        
+        [self.tongZhiDetailsCell addSubview:self.tongZhiDetailsCell.webView];
         //                weak_self.communityDetailsCell.communityDetailsHegiht.constant = currentHeight;
         self.Hnew = self.currentHeight;
         NSLog(@"html 高度2：%f", self.currentHeight);

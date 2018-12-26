@@ -28,7 +28,7 @@
 
 - (UITableView *)KeChengJieShaoTableView {
     if (!_KeChengJieShaoTableView) {
-        self.KeChengJieShaoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - 200 - APP_NAVH - 40) style:UITableViewStyleGrouped];
+        self.KeChengJieShaoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - 200 - APP_NAVH - 40)];
         self.KeChengJieShaoTableView.backgroundColor = backColor;
         self.KeChengJieShaoTableView.delegate = self;
         self.KeChengJieShaoTableView.dataSource = self;

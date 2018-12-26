@@ -37,7 +37,7 @@
     self.title = @"竞技活动详情";
     self.view.backgroundColor = [UIColor whiteColor];
     if ([self.typeStr isEqualToString:@"1"] || [self.typeStr isEqualToString:@"3"]) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
         [button setTitle:@"修改" forState:UIControlStateNormal];
         button.titleLabel.font = titFont;
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -67,7 +67,7 @@
 
 - (UITableView *)JingJiActivityDetailsTableView {
     if (!_JingJiActivityDetailsTableView) {
-        self.JingJiActivityDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT) style:UITableViewStyleGrouped];
+        self.JingJiActivityDetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT)];
         self.JingJiActivityDetailsTableView.backgroundColor = [UIColor whiteColor];
         self.JingJiActivityDetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.JingJiActivityDetailsTableView.delegate = self;

@@ -321,3 +321,6 @@
 
 //家长、教师、班主任查看课程表
 #define GetCourseListURL [NSString stringWithFormat:@"%@index/syllabus/get_course_list",YUMING]
+
+//教师查看信息被查看情况
+#define GetReadURL [NSString stringWithFormat:@"%@index/read/get_read",YUMING]

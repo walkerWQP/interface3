@@ -160,7 +160,7 @@
         }
     }
     
-    self.releasedBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.releasedBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [self.releasedBtn setTitle:@"发布" forState:UIControlStateNormal];
     self.releasedBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [self.releasedBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

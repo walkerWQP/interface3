@@ -741,6 +741,8 @@
        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@", error);
+        [WProgressHUD showErrorAnimatedText:@"网络异常"];
+        [WProgressHUD hideAllHUDAnimated:YES];
     }];
 }
 
@@ -778,7 +780,8 @@
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [WProgressHUD showErrorAnimatedText:@"网络异常"];
+        [WProgressHUD hideAllHUDAnimated:YES];
     }];
 }
 
@@ -823,7 +826,8 @@
             [WProgressHUD showErrorAnimatedText:[responseObject objectForKey:@"msg"]];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
+        [WProgressHUD showErrorAnimatedText:@"网络异常"];
+        [WProgressHUD hideAllHUDAnimated:YES];
     }];
 }
 

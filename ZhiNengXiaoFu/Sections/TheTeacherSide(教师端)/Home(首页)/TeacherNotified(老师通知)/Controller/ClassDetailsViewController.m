@@ -11,6 +11,7 @@
 #import "ClassDetailsModel.h"
 #import "ClassNoticeViewController.h"
 #import "TongZhiDetailsViewController.h"
+#import "ReadingViewController.h"
 
 @interface ClassDetailsViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -57,7 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.titleStr;
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [button setTitle:@"发布" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     button.titleLabel.font = titFont;
@@ -126,7 +127,6 @@
                 self.zanwushuju.alpha = 0;
                 [self.classDetailsTableView reloadData];
             }
-
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -176,7 +176,22 @@
             }
             
         }];
-        return @[deleteAction];
+        UITableViewRowAction *lookAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"阅读统计" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            NSLog(@"点击阅读统计");
+            if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"youkeState"] isEqualToString:@"1"]) {
+                [WProgressHUD showErrorAnimatedText:@"游客不能进行此操作"];
+            } else {
+                NSLog(@"点击阅读统计");
+                ReadingViewController *readingVC = [ReadingViewController new];
+                readingVC.type = @"1";
+                ClassDetailsModel *model = [self.classDetailsArr objectAtIndex:indexPath.row];
+                readingVC.ID = model.ID;
+                readingVC.class_id = self.ID;
+                [self.navigationController pushViewController:readingVC animated:YES];
+            }
+        }];
+        lookAction.backgroundColor = tabBarColor;
+        return @[deleteAction,lookAction];
 }
 
 - (void)deleteNoticeURLForData:(NSString *)ID {

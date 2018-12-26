@@ -335,7 +335,7 @@
 
 - (UITableView *)HomePageJTabelView {
     if (!_HomePageJTabelView) {
-        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - APP_NAVH - APP_TABH) style:UITableViewStyleGrouped];
+        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - APP_NAVH - APP_TABH)];
         self.HomePageJTabelView.delegate = self;
         self.HomePageJTabelView.dataSource = self;
     }

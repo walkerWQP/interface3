@@ -300,7 +300,7 @@
 
 - (UITableView *)HomePageJTabelView {
     if (!_HomePageJTabelView) {
-        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - APP_NAVH - APP_TABH) style:UITableViewStyleGrouped];
+        self.HomePageJTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, APP_HEIGHT - APP_NAVH - APP_TABH)];
         self.HomePageJTabelView.delegate = self;
         self.HomePageJTabelView.dataSource = self;
     }
@@ -347,7 +347,7 @@
         if (self.jingjiAry.count == 0) {
             return 60;
         } else {
-        return (kScreenWidth - 40) / 3 * 144 / 235 + 25 - 10;
+        return (APP_WIDTH - 40) / 3 * 144 / 235 + 25 - 10;
         }
     } else {
         if (self.dongtaiAry.count == 0) {
@@ -375,7 +375,7 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self.banner removeAllSubviews];
         [self.banner removeFromSuperview];
-        _banner = [HW3DBannerView initWithFrame:CGRectMake(0, 0, kScreenWidth, 150) imageSpacing:10 imageWidth:APP_WIDTH - 50];
+        _banner = [HW3DBannerView initWithFrame:CGRectMake(0, 0, APP_WIDTH, 150) imageSpacing:10 imageWidth:APP_WIDTH - 50];
         _banner.initAlpha = 0.5; // 设置两边卡片的透明度
         _banner.imageRadius = 10; // 设置卡片圆角
         _banner.imageHeightPoor = 10; // 设置中间卡片与两边卡片的高度差
@@ -417,9 +417,9 @@
        
         NSMutableArray * imgAry = [NSMutableArray arrayWithObjects:@"请假列表",@"问题咨询1",@"班级圈子",@"老师通知",@"课堂表", nil];
         NSMutableArray * titleAry = [NSMutableArray arrayWithObjects:@"请假列表",@"问题咨询",@"班级圈子",@"老师通知",@"班级课表", nil];
-        NSInteger width = (kScreenWidth - 50 - 40 * 5) / 4;
+        NSInteger width = (APP_WIDTH - 50 - 40 * 5) / 4;
 
-        self.FiveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 90)];
+        self.FiveView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 90)];
         self.FiveView.backgroundColor = [UIColor whiteColor];
         self.FiveView.userInteractionEnabled  = YES;
         [cell addSubview:self.FiveView];
@@ -439,7 +439,7 @@
             [self.FiveView addSubview:titleLabel];
         }
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, kScreenWidth, 10)];
+        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, APP_WIDTH, 10)];
         lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
         [self.FiveView addSubview:lineView];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -469,7 +469,7 @@
         [self.tongZhiImg addGestureRecognizer:tongzhiTap];
         
         if (self.tongzhiAry.count > 0) {
-            self.ccspView =[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, kScreenWidth, 60)];
+            self.ccspView =[[HomePageTongZhiView alloc] initWithFrame:CGRectMake(46 + 15 + 10, 0, APP_WIDTH, 60)];
             self.ccspView.titleArray = self.tongzhiAry;
             __weak typeof(self)blockSelf = self;
             [self.ccspView setClickLabelBlock:^(NSInteger index, NSString * _Nonnull titleString) {
@@ -491,7 +491,7 @@
                 }
             }
             
-            UILabel * zanwuLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 -50, 20, 100, 20)];
+            UILabel * zanwuLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 -50, 20, 100, 20)];
             zanwuLabel.textColor = RGB(170, 170, 170);
             zanwuLabel.textAlignment = NSTextAlignmentCenter;
             zanwuLabel.text = @"暂无数据";
@@ -526,7 +526,7 @@
                 }
             }
             
-            UILabel * zanwuLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 -50, 20, 100, 20)];
+            UILabel * zanwuLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 -50, 20, 100, 20)];
             zanwuLabel.textColor = RGB(170, 170, 170);
             zanwuLabel.textAlignment = NSTextAlignmentCenter;
             zanwuLabel.text = @"暂无数据";
@@ -552,7 +552,7 @@
             cell.backgroundColor=[UIColor whiteColor];
             NSArray *array=[NSArray arrayWithArray:self.jingjiAry];
             HomePageJingJiView *view=[[HomePageJingJiView alloc] init];
-            view.frame=CGRectMake(0,0, kScreenWidth,  (kScreenWidth - 40) / 3 * 144 / 235 + 25 - 10);
+            view.frame=CGRectMake(0,0, APP_WIDTH,  (APP_WIDTH - 40) / 3 * 144 / 235 + 25 - 10);
             view.HomePageJingJiViewDelegate = self;
             [view setDetail:array];
             [cell.contentView addSubview:view];
@@ -572,7 +572,7 @@
                 }
             }
             
-            UILabel * zanwuLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth / 2 -50, 20, 100, 20)];
+            UILabel * zanwuLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH / 2 -50, 20, 100, 20)];
             zanwuLabel.textColor = RGB(170, 170, 170);
             zanwuLabel.textAlignment = NSTextAlignmentCenter;
             zanwuLabel.text = @"暂无数据";
@@ -607,9 +607,9 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 3 || section == 4 || section == 5) {
-        UIView * header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50)];
+        UIView * header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 50)];
         header.backgroundColor = [UIColor whiteColor];
-        UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10)];
+        UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, APP_WIDTH, 10)];
         lineView.backgroundColor = [UIColor colorWithRed:250 / 255.0 green:250 / 255.0 blue:250 / 255.0 alpha:1];
         [header addSubview:lineView];
         
@@ -641,7 +641,7 @@
         [header addSubview:titleLabel];
         
         if (section != 3) {
-            UILabel * moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(kScreenWidth - 50, 14 + 10, 25, 12)];
+            UILabel * moreLabel = [[UILabel alloc] initWithFrame:CGRectMake(APP_WIDTH - 50, 14 + 10, 25, 12)];
             moreLabel.text = @"更多";
             moreLabel.textColor = RGB(170, 170, 170);
             moreLabel.font = [UIFont systemFontOfSize:12];
@@ -651,7 +651,7 @@
             moreImg.image = [UIImage imageNamed:@"返回"];
             [header addSubview:moreImg];
             
-            UIView * clickView = [[UIView alloc] initWithFrame:CGRectMake(kScreenWidth - 80, 0, 80, 50)];
+            UIView * clickView = [[UIView alloc] initWithFrame:CGRectMake(APP_WIDTH - 80, 0, 80, 50)];
             clickView.backgroundColor = [UIColor clearColor];
             [header addSubview:clickView];
             
@@ -820,7 +820,7 @@
 
 #pragma mark NewPagedFlowView Delegate
 - (CGSize)sizeForPageInFlowView:(NewPagedFlowView *)flowView {
-    return CGSizeMake(kScreenWidth - 60, (kScreenWidth - 60) * 9 / 16);
+    return CGSizeMake(APP_WIDTH - 60, (APP_WIDTH - 60) * 9 / 16);
 }
 
 
