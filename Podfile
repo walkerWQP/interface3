@@ -15,5 +15,9 @@ pod 'LTScrollView'
 pod 'YYKit', '~> 1.0.9'
 pod 'BlocksKit', '~> 2.2.5'
 pod 'Qiniu'
+pod 'Hyphenate'
 
 end
+
+ 
+        

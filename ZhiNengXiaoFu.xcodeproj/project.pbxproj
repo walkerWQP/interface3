@@ -64,7 +64,6 @@
 		042810972108070F00E2CA14 /* LeaveListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428103D2108070F00E2CA14 /* LeaveListItemCell.m */; };
 		042810982108070F00E2CA14 /* SystemInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042810402108070F00E2CA14 /* SystemInfomationViewController.m */; };
 		042810992108070F00E2CA14 /* SystemInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 042810432108070F00E2CA14 /* SystemInformationCell.m */; };
-		0428109A2108070F00E2CA14 /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042810482108070F00E2CA14 /* MineViewController.m */; };
 		0428109B2108070F00E2CA14 /* TuiChuLoginCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428104C2108070F00E2CA14 /* TuiChuLoginCell.m */; };
 		0428109C2108070F00E2CA14 /* MinePersonXiXinCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0428104D2108070F00E2CA14 /* MinePersonXiXinCell.m */; };
 		0428109D2108070F00E2CA14 /* PersonInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042810502108070F00E2CA14 /* PersonInfomationViewController.m */; };
@@ -200,9 +199,6 @@
 		989822BC211AF6DA00D547C0 /* WProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 989822B9211AF6DA00D547C0 /* WProgressHUD.m */; };
 		989822BF211B029500D547C0 /* OngoingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 989822BE211B029500D547C0 /* OngoingModel.m */; };
 		989B603D216EFEAB00DDCC7B /* HomeBannerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B603C216EFEAB00DDCC7B /* HomeBannerModel.m */; };
-		989B6053216F285200DDCC7B /* DCCycleScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B604D216F285200DDCC7B /* DCCycleScrollViewCell.m */; };
-		989B6054216F285200DDCC7B /* DCCycleScrollViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B604F216F285200DDCC7B /* DCCycleScrollViewFlowLayout.m */; };
-		989B6055216F285200DDCC7B /* DCCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B6051216F285200DDCC7B /* DCCycleScrollView.m */; };
 		989BFDF82108112E007A69A5 /* MainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989BFDF72108112E007A69A5 /* MainNavigationController.m */; };
 		989BFDFE210813D5007A69A5 /* UIImage+ColorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 989BFDFD210813D5007A69A5 /* UIImage+ColorImage.m */; };
 		989BFE0121081493007A69A5 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989BFE0021081493007A69A5 /* BaseViewController.m */; };
@@ -291,8 +287,6 @@
 		CD4E2D6C216DDA01008F1DA2 /* WorkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D65216DDA00008F1DA2 /* WorkCell.m */; };
 		CD4E2D6D216DDA01008F1DA2 /* WorkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD4E2D66216DDA00008F1DA2 /* WorkCell.xib */; };
 		CD4E2D6E216DDA01008F1DA2 /* HomePageJingJiView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D69216DDA00008F1DA2 /* HomePageJingJiView.m */; };
-		CD4E2D74216DDA3B008F1DA2 /* PGIndexBannerSubiew.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */; };
-		CD4E2D75216DDA3B008F1DA2 /* NewPagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */; };
 		CD509F9421C7567000ABE98B /* ClassScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD509F9321C7566F00ABE98B /* ClassScheduleViewController.m */; };
 		CD7F894421D1BED300A68AD4 /* ReadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7F894321D1BED300A68AD4 /* ReadingViewController.m */; };
 		CD7F894721D1C07F00A68AD4 /* ReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7F894621D1C07F00A68AD4 /* ReadViewController.m */; };
@@ -315,8 +309,8 @@
 		CD8A6E6D21C9D93500BA5090 /* ClassScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8A6E6C21C9D93500BA5090 /* ClassScheduleModel.m */; };
 		CD8A6E7021C9ED4300BA5090 /* LeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8A6E6F21C9ED4300BA5090 /* LeftCell.m */; };
 		CD8A6E7321C9ED8B00BA5090 /* RightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD8A6E7221C9ED8B00BA5090 /* RightCell.m */; };
-		CD93D03E219AA3BD00327AD6 /* UIView+Banner.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */; };
-		CD93D03F219AA3BD00327AD6 /* HW3DBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */; };
+		CD99E26121D375BB009BC3FB /* ZXCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD99E26021D375BB009BC3FB /* ZXCycleScrollView.m */; };
+		CD99E26321D37BD9009BC3FB /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CD99E26221D37BD9009BC3FB /* MineViewController.m */; };
 		CD9C16BE216EED920094E897 /* TongZhiNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16BD216EED920094E897 /* TongZhiNewCell.m */; };
 		CD9C16C2216EFFF40094E897 /* WorkNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD9C16C0216EFFF40094E897 /* WorkNewCell.m */; };
 		CD9C16C3216EFFF40094E897 /* WorkNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD9C16C1216EFFF40094E897 /* WorkNewCell.xib */; };
@@ -483,7 +477,6 @@
 		042810432108070F00E2CA14 /* SystemInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemInformationCell.m; sourceTree = "<group>"; };
 		042810442108070F00E2CA14 /* SystemInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInformationCell.h; sourceTree = "<group>"; };
 		042810472108070F00E2CA14 /* MineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineViewController.h; sourceTree = "<group>"; };
-		042810482108070F00E2CA14 /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		0428104A2108070F00E2CA14 /* TuiChuLoginCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuiChuLoginCell.h; sourceTree = "<group>"; };
 		0428104B2108070F00E2CA14 /* MinePersonXiXinCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinePersonXiXinCell.h; sourceTree = "<group>"; };
 		0428104C2108070F00E2CA14 /* TuiChuLoginCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuiChuLoginCell.m; sourceTree = "<group>"; };
@@ -748,12 +741,6 @@
 		989822BE211B029500D547C0 /* OngoingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OngoingModel.m; sourceTree = "<group>"; };
 		989B603B216EFEAB00DDCC7B /* HomeBannerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeBannerModel.h; sourceTree = "<group>"; };
 		989B603C216EFEAB00DDCC7B /* HomeBannerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeBannerModel.m; sourceTree = "<group>"; };
-		989B604D216F285200DDCC7B /* DCCycleScrollViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCycleScrollViewCell.m; sourceTree = "<group>"; };
-		989B604E216F285200DDCC7B /* DCCycleScrollViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCycleScrollViewCell.h; sourceTree = "<group>"; };
-		989B604F216F285200DDCC7B /* DCCycleScrollViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCycleScrollViewFlowLayout.m; sourceTree = "<group>"; };
-		989B6050216F285200DDCC7B /* DCCycleScrollViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCycleScrollViewFlowLayout.h; sourceTree = "<group>"; };
-		989B6051216F285200DDCC7B /* DCCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCycleScrollView.m; sourceTree = "<group>"; };
-		989B6052216F285200DDCC7B /* DCCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCycleScrollView.h; sourceTree = "<group>"; };
 		989BFDF62108112E007A69A5 /* MainNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainNavigationController.h; sourceTree = "<group>"; };
 		989BFDF72108112E007A69A5 /* MainNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainNavigationController.m; sourceTree = "<group>"; };
 		989BFDFC210813D5007A69A5 /* UIImage+ColorImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ColorImage.h"; sourceTree = "<group>"; };
@@ -931,10 +918,6 @@
 		CD4E2D67216DDA00008F1DA2 /* SchoolDongTaiCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolDongTaiCell.h; sourceTree = "<group>"; };
 		CD4E2D68216DDA00008F1DA2 /* WorkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkCell.h; sourceTree = "<group>"; };
 		CD4E2D69216DDA00008F1DA2 /* HomePageJingJiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageJingJiView.m; sourceTree = "<group>"; };
-		CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGIndexBannerSubiew.m; sourceTree = "<group>"; };
-		CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPagedFlowView.m; sourceTree = "<group>"; };
-		CD4E2D72216DDA3B008F1DA2 /* PGIndexBannerSubiew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGIndexBannerSubiew.h; sourceTree = "<group>"; };
-		CD4E2D73216DDA3B008F1DA2 /* NewPagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPagedFlowView.h; sourceTree = "<group>"; };
 		CD509F9221C7566F00ABE98B /* ClassScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleViewController.h; sourceTree = "<group>"; };
 		CD509F9321C7566F00ABE98B /* ClassScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassScheduleViewController.m; sourceTree = "<group>"; };
 		CD7F894221D1BED300A68AD4 /* ReadingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReadingViewController.h; sourceTree = "<group>"; };
@@ -979,11 +962,10 @@
 		CD8A6E6F21C9ED4300BA5090 /* LeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftCell.m; sourceTree = "<group>"; };
 		CD8A6E7121C9ED8B00BA5090 /* RightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightCell.h; sourceTree = "<group>"; };
 		CD8A6E7221C9ED8B00BA5090 /* RightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightCell.m; sourceTree = "<group>"; };
-		CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Banner.m"; sourceTree = "<group>"; };
-		CD93D03B219AA3BD00327AD6 /* UIView+Banner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Banner.h"; sourceTree = "<group>"; };
-		CD93D03C219AA3BD00327AD6 /* HW3DBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HW3DBannerView.h; sourceTree = "<group>"; };
-		CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HW3DBannerView.m; sourceTree = "<group>"; };
 		CD99DD5721D315A9009BC3FB /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		CD99E25F21D375BB009BC3FB /* ZXCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCycleScrollView.h; sourceTree = "<group>"; };
+		CD99E26021D375BB009BC3FB /* ZXCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCycleScrollView.m; sourceTree = "<group>"; };
+		CD99E26221D37BD9009BC3FB /* MineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		CD9C16BC216EED920094E897 /* TongZhiNewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TongZhiNewCell.h; sourceTree = "<group>"; };
 		CD9C16BD216EED920094E897 /* TongZhiNewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TongZhiNewCell.m; sourceTree = "<group>"; };
 		CD9C16BF216EFFF40094E897 /* WorkNewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WorkNewCell.h; sourceTree = "<group>"; };
@@ -1550,7 +1532,7 @@
 			isa = PBXGroup;
 			children = (
 				042810472108070F00E2CA14 /* MineViewController.h */,
-				042810482108070F00E2CA14 /* MineViewController.m */,
+				CD99E26221D37BD9009BC3FB /* MineViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2345,7 +2327,6 @@
 				CDB7C36B21B4CFF200616C6A /* GSFilterView */,
 				CDB5309221AD1E1A00EDD372 /* 拍照 */,
 				989B604C216F284300DDCC7B /* 轮播图 */,
-				CD4E2D6F216DDA3B008F1DA2 /* NewPagedFlowView */,
 				987209A0211ECEB3009D235D /* popView(弹出视图) */,
 				04F69558211C40E600F9D2E2 /* CLPlayer */,
 				989822B3211AF6DA00D547C0 /* 提示效果 */,
@@ -2916,16 +2897,7 @@
 		989B604C216F284300DDCC7B /* 轮播图 */ = {
 			isa = PBXGroup;
 			children = (
-				CD93D03C219AA3BD00327AD6 /* HW3DBannerView.h */,
-				CD93D03D219AA3BD00327AD6 /* HW3DBannerView.m */,
-				CD93D03B219AA3BD00327AD6 /* UIView+Banner.h */,
-				CD93D03A219AA3BD00327AD6 /* UIView+Banner.m */,
-				989B6052216F285200DDCC7B /* DCCycleScrollView.h */,
-				989B6051216F285200DDCC7B /* DCCycleScrollView.m */,
-				989B604E216F285200DDCC7B /* DCCycleScrollViewCell.h */,
-				989B604D216F285200DDCC7B /* DCCycleScrollViewCell.m */,
-				989B6050216F285200DDCC7B /* DCCycleScrollViewFlowLayout.h */,
-				989B604F216F285200DDCC7B /* DCCycleScrollViewFlowLayout.m */,
+				CD99E25E21D375BB009BC3FB /* ZXCycleScrollView */,
 			);
 			path = "轮播图";
 			sourceTree = "<group>";
@@ -3378,17 +3350,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		CD4E2D6F216DDA3B008F1DA2 /* NewPagedFlowView */ = {
-			isa = PBXGroup;
-			children = (
-				CD4E2D72216DDA3B008F1DA2 /* PGIndexBannerSubiew.h */,
-				CD4E2D70216DDA3B008F1DA2 /* PGIndexBannerSubiew.m */,
-				CD4E2D73216DDA3B008F1DA2 /* NewPagedFlowView.h */,
-				CD4E2D71216DDA3B008F1DA2 /* NewPagedFlowView.m */,
-			);
-			path = NewPagedFlowView;
-			sourceTree = "<group>";
-		};
 		CD509F8E21C7561A00ABE98B /* ClassSchedule(班级课表) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3499,6 +3460,15 @@
 				CD87174E21C89C42006AD369 /* DateTimePickerView.m */,
 			);
 			path = "时间选择器";
+			sourceTree = "<group>";
+		};
+		CD99E25E21D375BB009BC3FB /* ZXCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				CD99E25F21D375BB009BC3FB /* ZXCycleScrollView.h */,
+				CD99E26021D375BB009BC3FB /* ZXCycleScrollView.m */,
+			);
+			path = ZXCycleScrollView;
 			sourceTree = "<group>";
 		};
 		CD9CC15B21BDFECD00C63FDF /* TGWebController */ = {
@@ -3799,6 +3769,7 @@
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BlocksKit/BlocksKit.framework",
 				"${BUILT_PRODUCTS_DIR}/HappyDNS/HappyDNS.framework",
+				"${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.5.1/Hyphenate.framework",
 				"${BUILT_PRODUCTS_DIR}/LTScrollView/LTScrollView.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
@@ -3814,6 +3785,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BlocksKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HappyDNS.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hyphenate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTScrollView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
@@ -3851,6 +3823,7 @@
 				98A1DB39213E6ECC0016230A /* BindMobilePhoneViewController.m in Sources */,
 				042D6F1A2137E3760004978E /* JiuQinStuCell.m in Sources */,
 				0413D694210EA53A00CB34A6 /* TeacherZaiXianViewController.m in Sources */,
+				CD99E26321D37BD9009BC3FB /* MineViewController.m in Sources */,
 				042810A12108070F00E2CA14 /* QianDaoViewController.m in Sources */,
 				98E33E85211823800098C241 /* LeaveTheDetailsCell.m in Sources */,
 				042AA45B211D8CA800E3AACB /* ClassHomeModel.m in Sources */,
@@ -3884,12 +3857,12 @@
 				CD87174821C88370006AD369 /* ClassListViewController.m in Sources */,
 				98AD7EA8210F11BD00641231 /* ConsultingViewController.m in Sources */,
 				042D6F112137977F0004978E /* YiZhuQinViewController.m in Sources */,
+				CD99E26121D375BB009BC3FB /* ZXCycleScrollView.m in Sources */,
 				98DD0C22211D2869004E0773 /* ReleasedAlbumsViewController.m in Sources */,
 				98AD7EA5210F11BD00641231 /* HaveToReplyViewController.m in Sources */,
 				983CD9612111B6E20050508C /* TongZhiModel.m in Sources */,
 				98D89DC421100A1C00355626 /* TotalNumberCell.m in Sources */,
 				0409A4302119754C004A9DB6 /* JJPhoto.m in Sources */,
-				989B6055216F285200DDCC7B /* DCCycleScrollView.m in Sources */,
 				98D89DFE21105CA000355626 /* WenTiZiXunListCell.m in Sources */,
 				042D6F14213797950004978E /* WeiZhuQinViewController.m in Sources */,
 				CDA1F97121C0ACF6001ADDD0 /* SearchSuggestionVC.m in Sources */,
@@ -3933,7 +3906,6 @@
 				989382DF21226A60007A9EBD /* ToSchoolSituationModel.m in Sources */,
 				045A95082113119700030E56 /* WorkDetailsViewController.m in Sources */,
 				98D89DEC21103C7800355626 /* Encryption.m in Sources */,
-				CD93D03E219AA3BD00327AD6 /* UIView+Banner.m in Sources */,
 				98C01EF02114562200D625DA /* PublishJobModel.m in Sources */,
 				0413D6BD210F06C900CB34A6 /* ParentXueTangCell.m in Sources */,
 				0409A4272119754C004A9DB6 /* MShowAllGroup.m in Sources */,
@@ -3957,9 +3929,7 @@
 				98AD7EC5210F11BD00641231 /* TeacherNotifiedModel.m in Sources */,
 				04F6956A211C40E600F9D2E2 /* AILoadingView.m in Sources */,
 				98E33E88211851730098C241 /* TotalNumberModel.m in Sources */,
-				0428109A2108070F00E2CA14 /* MineViewController.m in Sources */,
 				045A94FC2112E41D00030E56 /* IQUIView+Hierarchy.m in Sources */,
-				989B6053216F285200DDCC7B /* DCCycleScrollViewCell.m in Sources */,
 				CD87174521C88290006AD369 /* AddLessonsViewController.m in Sources */,
 				98F0C7EA214F9DAC009AEE15 /* NewDynamicsTableViewCell.m in Sources */,
 				047FB224211435E400AED26D /* SchoolDongTaiModel.m in Sources */,
@@ -3969,7 +3939,6 @@
 				98AD7EB3210F11BD00641231 /* LaunchEventViewController.m in Sources */,
 				0428109B2108070F00E2CA14 /* TuiChuLoginCell.m in Sources */,
 				042AA43B211D276300E3AACB /* ParentXueTangModel.m in Sources */,
-				CD93D03F219AA3BD00327AD6 /* HW3DBannerView.m in Sources */,
 				98D89DB82110054100355626 /* TotalNumberViewController.m in Sources */,
 				0432F2C82123F99800E78FB4 /* TeacherListNCell.m in Sources */,
 				04251B9A2115453B0090CD3C /* ConsultListModel.m in Sources */,
@@ -3995,7 +3964,6 @@
 				CD7F894421D1BED300A68AD4 /* ReadingViewController.m in Sources */,
 				98AD7EBE210F11BD00641231 /* SchoolDynamicCellCell.m in Sources */,
 				042810A32108070F00E2CA14 /* QianDaoPsersonCell.m in Sources */,
-				CD4E2D75216DDA3B008F1DA2 /* NewPagedFlowView.m in Sources */,
 				CD815F6D21B9094700738C87 /* ManagementModel.m in Sources */,
 				0413D6B4210F04F000CB34A6 /* ParentXueTangViewController.m in Sources */,
 				989BFE0121081493007A69A5 /* BaseViewController.m in Sources */,
@@ -4007,7 +3975,6 @@
 				0413D6AA210EEAE200CB34A6 /* KeChengJieShaoCell.m in Sources */,
 				98F0C7DB214F9CBA009AEE15 /* SDBaseRefreshView.m in Sources */,
 				045A94F92112E41D00030E56 /* IQUIWindow+Hierarchy.m in Sources */,
-				989B6054216F285200DDCC7B /* DCCycleScrollViewFlowLayout.m in Sources */,
 				045A94FA2112E41D00030E56 /* IQUITextFieldView+Additions.m in Sources */,
 				983CD9652111B70D0050508C /* TongZhiDetailsCell.m in Sources */,
 				042D6F172137D1250004978E /* CircleView.m in Sources */,
@@ -4043,7 +4010,6 @@
 				98C01EE72114326B00D625DA /* ClassNoticeViewController.m in Sources */,
 				0409A42D2119754C004A9DB6 /* JJOneScrollView.m in Sources */,
 				CDF2967E216DE9C800D87410 /* HomePageTongZhiView.m in Sources */,
-				CD4E2D74216DDA3B008F1DA2 /* PGIndexBannerSubiew.m in Sources */,
 				98F0C7F1214F9DC8009AEE15 /* NewDynamicsViewController+Delegate.m in Sources */,
 				04F6956F211C40E600F9D2E2 /* UIViewController+CLPlayerRotation.m in Sources */,
 				98AD7EBD210F11BD00641231 /* SchoolDynamicViewController.m in Sources */,
@@ -4327,9 +4293,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4349,8 +4315,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
+				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4364,9 +4330,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = ZhiNengXiaoFu/ZhiNengXiaoFu.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = NBZT2UT4S6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4386,8 +4352,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DuXiuKeJi.YiShanZhiHui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "e63a581b-17ad-4dc0-90cf-10817a89c5c3";
+				PROVISIONING_PROFILE_SPECIFIER = YiShanZhiHuiDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

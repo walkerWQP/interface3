@@ -1,34 +1,24 @@
 //
-//  HW3DBannerView.m
-//  cycleScrollDemo
-//
-//  Created by 李含文 on 2017/12/26.
-//  Copyright © 2017年 SK丿希望. All rights reserved.
+//  ZXCycleScrollView.m
+//  Created by 虞振兴 on 2017/11/7.
+//  Copyright © 2017年 yuzx. All rights reserved.
 //
 
-#import "HW3DBannerView.h"
-#import "UIView+Banner.h"
+#import "ZXCycleScrollView.h"
+
 
 #define ZXMainScrollViewWidth self.mainScrollView.frame.size.width
 #define ZXMainScrollViewHeight self.mainScrollView.frame.size.height
-@interface HW3DBannerView ()
-/** 页码指示器 */
-@property (nonatomic,strong) UIPageControl *pageControl;
-@property (nonatomic,strong) UIScrollView *mainScrollView;
-@property (nonatomic,strong) UIImageView *leftIV;
-@property (nonatomic,strong) UIImageView *centerIV;
-@property (nonatomic,strong) UIImageView *rightIV;
-@property (nonatomic,assign) NSUInteger currentImageIndex;
+
+@interface ZXCycleScrollView ()
 @property (nonatomic,assign) CGFloat imgWidth;//图片宽度
 @property (nonatomic,assign) CGFloat itemMargnPadding;//间距 2张图片间的间距  默认0
 @property (nonatomic,assign) NSInteger imgCount;//数量
 @property (nonatomic,weak) NSTimer *timer;
-
 @end
 
-@implementation HW3DBannerView
+@implementation ZXCycleScrollView
 
-#pragma mark - 初始化
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.imgWidth = ZXMainScrollViewWidth;
@@ -37,35 +27,38 @@
     }
     return self;
 }
-+(instancetype)initWithFrame:(CGRect)frame
-                imageSpacing:(CGFloat)imageSpacing
-                  imageWidth:(CGFloat)imageWidth {
-    HW3DBannerView *scrollView = [[self alloc] initWithFrame:frame];
-    scrollView.imgWidth = imageWidth;
-    scrollView.itemMargnPadding = imageSpacing;
-    return scrollView;
-}
-+(instancetype)initWithFrame:(CGRect)frame
-                imageSpacing:(CGFloat)imageSpacing
-                  imageWidth:(CGFloat)imageWidth
-                        data:(NSArray *)data{
-    HW3DBannerView *scrollView = [[self alloc] initWithFrame:frame];
-    scrollView.imgWidth = imageWidth;
-    scrollView.itemMargnPadding = imageSpacing;
-    scrollView.data = data;
+
++ (instancetype)cycleScrollViewWithFrame:(CGRect)frame dataArray:(NSArray *)dataArray {
+    ZXCycleScrollView *scrollView = [[self alloc] initWithFrame:frame];
+    scrollView.sourceDataArr = dataArray;
     return scrollView;
 }
 
+//图片间有间距  又要有翻页效果～～
++(instancetype)initWithFrame:(CGRect)frame withMargnPadding:(CGFloat)margnPadding withImgWidth:(CGFloat)imgWidth{
+    ZXCycleScrollView *scrollView = [[self alloc] initWithFrame:frame];
+    scrollView.imgWidth = imgWidth;
+    scrollView.itemMargnPadding = margnPadding;
+    return scrollView;
+}
+
++(instancetype)initWithFrame:(CGRect)frame withMargnPadding:(CGFloat)margnPadding withImgWidth:(CGFloat)imgWidth dataArray:(NSArray *)dataArray{
+    ZXCycleScrollView *scrollView = [[self alloc] initWithFrame:frame];
+    scrollView.imgWidth = imgWidth;
+    scrollView.itemMargnPadding = margnPadding;
+    scrollView.sourceDataArr = dataArray;
+    return scrollView;
+}
+
+
 -(void)initialization{
-    _initAlpha = 1;
-    _autoScrollTimeInterval = 2.0;
-    _imageHeightPoor = 0;
+     _autoScrollTimeInterval = 2.0;
     self.otherPageControlColor = [UIColor grayColor];
     self.curPageControlColor = [UIColor whiteColor];
     _showPageControl = YES;
     _hidesForSinglePage = YES;
     _autoScroll = YES;
-    self.data = [NSArray array];
+      self.sourceDataArr = [NSArray array];
 }
 
 -(void)setUpUI{
@@ -93,61 +86,48 @@
     
     [self updateViewFrameSetting];
 }
-- (void)setImageHeightPoor:(CGFloat)imageHeightPoor {
-    _imageHeightPoor = imageHeightPoor;
-    [self updateViewFrameSetting];
-}
+
 
 //创建页码指示器
 -(void)createPageControl{
     if (_pageControl) [_pageControl removeFromSuperview];
-    if (self.data.count == 0) return;
-    if ((self.data.count == 1) && self.hidesForSinglePage) return;
+    if (self.sourceDataArr.count == 0) return;
+    if ((self.sourceDataArr.count == 1) && self.hidesForSinglePage) return;
     
     _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((self.frame.size.width - 200)/2, ZXMainScrollViewHeight - 30, 200, 30)];
     _pageControl.userInteractionEnabled = NO;
     _pageControl.currentPage = 0;
-    _pageControl.numberOfPages = self.data.count;
     [self addSubview:_pageControl];
-    _pageControl.pageIndicatorTintColor = self.otherPageControlColor;
+     _pageControl.pageIndicatorTintColor = self.otherPageControlColor;
     _pageControl.currentPageIndicatorTintColor = self.curPageControlColor;
     
     _pageControl.hidden = !_showPageControl;
 }
 
-#pragma mark - 设置初始尺寸
 -(void)updateViewFrameSetting{
     //设置偏移量
     self.mainScrollView.contentSize = CGSizeMake(ZXMainScrollViewWidth * 3, ZXMainScrollViewHeight);
     self.mainScrollView.contentOffset = CGPointMake(ZXMainScrollViewWidth, 0.0);
+    
     //图片视图；左边
-    self.leftIV.frame = CGRectMake(self.itemMargnPadding/2, self.imageHeightPoor, self.imgWidth, ZXMainScrollViewHeight-self.imageHeightPoor*2);
+    self.leftIV.frame = CGRectMake(self.itemMargnPadding/2, 0.0, self.imgWidth, ZXMainScrollViewHeight);
     //图片视图；中间
     self.centerIV.frame = CGRectMake(ZXMainScrollViewWidth + self.itemMargnPadding/2, 0.0, self.imgWidth, ZXMainScrollViewHeight);
     //图片视图；右边
-    self.rightIV.frame = CGRectMake(ZXMainScrollViewWidth * 2.0 + self.itemMargnPadding/2, self.imageHeightPoor, self.imgWidth, ZXMainScrollViewHeight-self.imageHeightPoor*2);
-    
+    self.rightIV.frame = CGRectMake(ZXMainScrollViewWidth * 2.0 + self.itemMargnPadding/2, 0.0, self.imgWidth, ZXMainScrollViewHeight);
 }
-- (void)setImageRadius:(CGFloat)imageRadius {
-    _imageRadius = imageRadius;
-    [self.leftIV addRoundedCornersWithRadius:imageRadius];
-    [self.centerIV addRoundedCornersWithRadius:imageRadius];
-    [self.rightIV addRoundedCornersWithRadius:imageRadius];
-    [self.leftIV addProjectionWithShadowOpacity:0.4];
-    [self.centerIV addProjectionWithShadowOpacity:0.4];
-    [self.rightIV addProjectionWithShadowOpacity:0.4];
-}
-- (void)setData:(NSArray *)data {
-    if (data.count < _data.count) {
+
+-(void)setSourceDataArr:(NSArray *)sourceDataArr {
+    if (sourceDataArr.count < _sourceDataArr.count) {
         [_mainScrollView setContentOffset:CGPointMake(ZXMainScrollViewWidth, 0) animated:NO];
     }
-    _data = data;
+    _sourceDataArr = sourceDataArr;
     self.currentImageIndex = 0;
-    self.imgCount = data.count;
+    self.imgCount = sourceDataArr.count;
     self.pageControl.numberOfPages = self.imgCount;
     [self setInfoByCurrentImageIndex:self.currentImageIndex];
     
-    if (data.count != 1) {
+    if (sourceDataArr.count != 1) {
         self.mainScrollView.scrollEnabled = YES;
         [self setAutoScroll:self.autoScroll];
     } else {
@@ -157,33 +137,34 @@
     }
     
     [self createPageControl];
+    
 }
 
 - (void)setInfoByCurrentImageIndex:(NSUInteger)currentImageIndex {
     if(self.self.imgCount == 0){
         return;
     }
-    if([self isHttpString:self.data[currentImageIndex]]){
-        [self.centerIV sd_setImageWithURL:[NSURL URLWithString:self.data[currentImageIndex]] placeholderImage:self.placeHolderImage];
+    if([self isHttpString:self.sourceDataArr[currentImageIndex]]){
+        [self.centerIV sd_setImageWithURL:[NSURL URLWithString:self.sourceDataArr[currentImageIndex]] placeholderImage:self.placeHolderImage];
     }else {
-        self.centerIV.image = self.data[currentImageIndex];
+       self.centerIV.image = self.sourceDataArr[currentImageIndex];
     }
     
     NSInteger leftIndex = (unsigned long)((_currentImageIndex - 1 + self.imgCount) % self.imgCount);
-    if([self isHttpString:self.data[leftIndex]]){
-        [self.leftIV sd_setImageWithURL:[NSURL URLWithString:self.data[leftIndex]] placeholderImage:self.placeHolderImage];
+   if([self isHttpString:self.sourceDataArr[leftIndex]]){
+        [self.leftIV sd_setImageWithURL:[NSURL URLWithString:self.sourceDataArr[leftIndex]] placeholderImage:self.placeHolderImage];
     }else {
-        self.leftIV.image = self.data[leftIndex];
+        self.leftIV.image = self.sourceDataArr[leftIndex];
     }
     
     NSInteger rightIndex = (unsigned long)((_currentImageIndex + 1) % self.imgCount);
-    if([self isHttpString:self.data[rightIndex]]){
-        [self.rightIV sd_setImageWithURL:[NSURL URLWithString:self.data[rightIndex]] placeholderImage:self.placeHolderImage];
+    if([self isHttpString:self.sourceDataArr[rightIndex]]){
+        [self.rightIV sd_setImageWithURL:[NSURL URLWithString:self.sourceDataArr[rightIndex]] placeholderImage:self.placeHolderImage];
     }else {
-        self.rightIV.image = self.data[rightIndex];
+        self.rightIV.image = self.sourceDataArr[rightIndex];
     }
-    
-    _pageControl.currentPage = currentImageIndex;
+
+   _pageControl.currentPage = currentImageIndex;
 }
 
 - (void)reloadImage {
@@ -201,6 +182,8 @@
     [self setInfoByCurrentImageIndex:_currentImageIndex];
 }
 
+
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     if (self.autoScroll) {
@@ -212,8 +195,11 @@
     [self reloadImage];
     [self.mainScrollView setContentOffset:CGPointMake(ZXMainScrollViewWidth, 0) animated:NO] ;
     self.pageControl.currentPage = self.currentImageIndex;
-    if (self.clickImageBlock) {
-        self.clickImageBlock(self.currentImageIndex);
+    
+    if ([self.delegate respondsToSelector:@selector(zxCycleScrollView:didScrollToIndex:)]) {
+        [self.delegate zxCycleScrollView:self didScrollToIndex:self.currentImageIndex];
+    } else if (self.itemDidScrollToBlock) {
+        self.itemDidScrollToBlock(self.currentImageIndex);
     }
 }
 
@@ -231,15 +217,23 @@
 
 #pragma mark -- action
 -(void)leftTapGes{
-    
+    if([self.delegate respondsToSelector:@selector(zxCycleScrollView:didSelectItemAtIndex:)]){
+        NSInteger leftIndex = (unsigned long)((_currentImageIndex - 1 + self.imgCount) % self.imgCount);
+        [self.delegate zxCycleScrollView:self didSelectItemAtIndex:leftIndex];
+    }
 }
 
 -(void)rightTapGes{
-    
+    if([self.delegate respondsToSelector:@selector(zxCycleScrollView:didSelectItemAtIndex:)]){
+         NSInteger rightIndex = (unsigned long)((_currentImageIndex + 1) % self.imgCount);
+        [self.delegate zxCycleScrollView:self didSelectItemAtIndex:rightIndex];
+    }
 }
 
 -(void)centerTapGes{
-    
+    if([self.delegate respondsToSelector:@selector(zxCycleScrollView:didSelectItemAtIndex:)]){
+        [self.delegate zxCycleScrollView:self didSelectItemAtIndex:self.currentImageIndex];
+    }
 }
 
 -(void)createTimer {
@@ -250,16 +244,20 @@
 
 - (void)invalidateTimer {
     if(_timer){
-        [_timer invalidate];
-        _timer = nil;
+    [_timer invalidate];
+    _timer = nil;
     }
 }
 
 - (void)automaticScroll {
     if (0 == _imgCount) return;
     if(self.mainScrollView.scrollEnabled == NO) return;
+    
     [self.mainScrollView setContentOffset:CGPointMake(ZXMainScrollViewWidth*2, 0.0) animated:YES];
+ 
 }
+
+
 
 #pragma mark -- properties
 -(void)setItemMargnPadding:(CGFloat)itemMargnPadding {
@@ -270,7 +268,7 @@
 
 -(void)setCurPageControlColor:(UIColor *)curPageControlColor {
     _curPageControlColor = curPageControlColor;
-    _pageControl.currentPageIndicatorTintColor = curPageControlColor;
+    _pageControl.currentPageIndicatorTintColor = curPageControlColor; 
 }
 
 -(void)setOtherPageControlColor:(UIColor *)otherPageControlColor {
@@ -294,6 +292,7 @@
     }
 }
 
+
 -(void)setPlaceHolderImage:(UIImage *)placeHolderImage {
     _placeHolderImage = placeHolderImage;
     self.centerIV.image = placeHolderImage;
@@ -306,12 +305,6 @@
     self.pageControl.hidden = !_showPageControl;
 }
 
-- (void)setInitAlpha:(CGFloat)initAlpha {
-    _initAlpha = initAlpha;
-    self.leftIV.alpha = self.initAlpha;
-    self.centerIV.alpha = 1;
-    self.rightIV.alpha = self.initAlpha;
-}
 
 -(UIScrollView *)mainScrollView {
     if (!_mainScrollView) {
@@ -325,6 +318,8 @@
     return _mainScrollView;
 }
 
+
+
 -(BOOL)isHttpString:(NSString *)urlStr {
     if([urlStr hasPrefix:@"http:"] || [urlStr hasPrefix:@"https:"]){
         return YES;
@@ -332,6 +327,7 @@
         return NO;
     }
 }
+
 #pragma mark - life circles
 //解决当父View释放时，当前视图因为被Timer强引用而不能释放的问题
 - (void)willMoveToSuperview:(UIView *)newSuperview {
@@ -339,41 +335,11 @@
         [self invalidateTimer];
     }
 }
+
 //解决当timer释放后 回调scrollViewDidScroll时访问野指针导致崩溃
 - (void)dealloc {
     _mainScrollView.delegate = nil;
     [self invalidateTimer];
 }
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.itemMargnPadding > 0) {
-        CGFloat currentX = scrollView.contentOffset.x - ZXMainScrollViewWidth;
-        CGFloat bl = currentX/ZXMainScrollViewWidth*(1-self.initAlpha);
-        CGFloat variableH = currentX/ZXMainScrollViewWidth*self.imageHeightPoor*2;
-        if (currentX > 0) { //左滑
-            self.centerIV.alpha = 1 - bl;
-            self.rightIV.alpha = self.initAlpha + bl;
-            self.centerIV.height = ZXMainScrollViewHeight - variableH;
-            self.centerIV.y = currentX/ZXMainScrollViewWidth*self.imageHeightPoor;
-            self.rightIV.height = ZXMainScrollViewHeight-2*self.imageHeightPoor+variableH;
-            self.rightIV.y = self.imageHeightPoor-currentX/ZXMainScrollViewWidth*self.imageHeightPoor;
-        } else if (currentX < 0){  // 右滑
-            self.centerIV.alpha = 1 + bl;
-            self.leftIV.alpha = self.initAlpha - bl;
-            self.centerIV.height = ZXMainScrollViewHeight + variableH;
-            self.centerIV.y = -currentX/ZXMainScrollViewWidth*self.imageHeightPoor;
-            self.leftIV.height = ZXMainScrollViewHeight-2*self.imageHeightPoor-variableH;
-            self.leftIV.y = self.imageHeightPoor+currentX/ZXMainScrollViewWidth*self.imageHeightPoor;
-        } else {
-            self.leftIV.alpha = self.initAlpha;
-            self.centerIV.alpha = 1;
-            self.rightIV.alpha = self.initAlpha;
-            self.leftIV.height = ZXMainScrollViewHeight-2*self.imageHeightPoor;
-            self.centerIV.height = ZXMainScrollViewHeight;
-            self.rightIV.height = ZXMainScrollViewHeight-2*self.imageHeightPoor;
-            self.leftIV.y = self.imageHeightPoor;
-            self.centerIV.y = 0;
-            self.rightIV.y = self.imageHeightPoor;
-        }
-    }
-}
+
 @end

@@ -7,8 +7,6 @@
 //
 
 #import "HomePageJViewController.h"
-#import "NewPagedFlowView.h"
-#import "PGIndexBannerSubiew.h"
 #import "HomePageJingJiView.h"
 #import "WorkCell.h"
 #import "SchoolDongTaiCell.h"
@@ -21,7 +19,6 @@
 #import "ParentXueTangNewViewController.h"
 #import "TeacherZaiXianTotalViewController.h"
 #import "CompetitiveActivityViewController.h"
-#import "DCCycleScrollView.h"
 #import "HomeBannerModel.h"
 #import "TongZhiDetailsViewController.h"
 #import "WorkDetailsViewController.h"
@@ -33,7 +30,7 @@
 #import "HomePageNumberModel.h"
 #import "ClassScheduleViewController.h"
 
-@interface HomePageJViewController ()<NewPagedFlowViewDelegate, NewPagedFlowViewDataSource, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate, DCCycleScrollViewDelegate>
+@interface HomePageJViewController ()<UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate, ZXCycleScrollViewDelegate>
 
 @property (nonatomic, strong) NSString           *schoolName;
 /**
@@ -44,7 +41,6 @@
 @property (nonatomic, strong) UIImageView         *img;
 @property (nonatomic, strong) NSMutableArray      *bannerArr;
 @property (nonatomic, strong) NSMutableArray      *imgArr;
-@property (nonatomic, strong) HW3DBannerView      *banner;
 @property (nonatomic, strong) NSMutableArray      *tongzhiAry;
 @property (nonatomic, strong) NSMutableArray      *workAry;
 @property (nonatomic, strong) NSMutableArray      *jingJiAry;
@@ -53,6 +49,7 @@
 @property (nonatomic, strong) UIImageView         *tongZhiImg;
 @property (nonatomic, strong) UIView              *FiveView;
 @property (nonatomic, strong) NSMutableArray      *numberAry;
+@property (nonatomic,strong) ZXCycleScrollView    *scrollView;
 
 @end
 
@@ -281,12 +278,7 @@
     
 }
 
-//点击图片的代理
--(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    BannerModel *model = self.bannerArr[index];
-    NSLog(@"%@",model.ID);
-    NSLog(@"%@",model.url);
-}
+
 
 #pragma mark ======= 获取首页数据 =======
 
@@ -407,31 +399,17 @@
         }
         
         self.automaticallyAdjustsScrollViewInsets = NO;
-        [self.banner removeAllSubviews];
-        [self.banner removeFromSuperview];
-        _banner = [HW3DBannerView initWithFrame:CGRectMake(0, 0, kScreenWidth, 150) imageSpacing:10 imageWidth:APP_WIDTH - 50];
-        _banner.initAlpha = 0.5; // 设置两边卡片的透明度
-        _banner.imageRadius = 10; // 设置卡片圆角
-        _banner.imageHeightPoor = 10; // 设置中间卡片与两边卡片的高度差
-        // 设置要加载的图片
-        if (self.imageArray.count != 0) {
-            self.banner.data = self.imgArr;
-        }
-        _banner.placeHolderImage = [UIImage imageNamed:@"教师端活动管理banner"]; // 设置占位图片
-        [cell addSubview:self.banner];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        _banner.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
-            
-        };
-//        self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
-//        self.banner.autoScrollTimeInterval = 3;
-//        self.banner.autoScroll = YES;
-//        self.banner.isZoom = YES;
-//        self.banner.itemSpace = 0;
-//        self.banner.imgCornerRadius = 10;
-//        self.banner.itemWidth = self.view.frame.size.width - 100;
-//        self.banner.delegate = self;
-        [cell addSubview:self.banner];
+        
+        [self.scrollView removeAllSubviews];
+        self.scrollView = [ZXCycleScrollView  initWithFrame:CGRectMake(0, 0, APP_WIDTH, 150) withMargnPadding:10 withImgWidth:APP_WIDTH - 40 dataArray:self.imgArr];
+        self.scrollView.delegate = self;
+        [cell addSubview:self.scrollView];
+        self.scrollView.otherPageControlColor = [UIColor blueColor];
+        self.scrollView.curPageControlColor = [UIColor whiteColor];
+        self.scrollView.sourceDataArr = self.imgArr;
+        self.scrollView.autoScroll = YES;
+        
+        [cell addSubview:self.scrollView];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
@@ -810,35 +788,9 @@
 }
 
 
-#pragma mark NewPagedFlowView Delegate
-- (CGSize)sizeForPageInFlowView:(NewPagedFlowView *)flowView {
-    return CGSizeMake(kScreenWidth - 60, (kScreenWidth - 60) * 9 / 16);
-}
 
-- (void)didSelectCell:(UIView *)subView withSubViewIndex:(NSInteger)subIndex {
-    NSLog(@"点击了第%ld张图",(long)subIndex + 1);
-}
 
-- (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(NewPagedFlowView *)flowView {
-    NSLog(@"ViewController 滚动到了第%ld页",pageNumber);
-}
 
-#pragma mark NewPagedFlowView Datasource
-- (NSInteger)numberOfPagesInFlowView:(NewPagedFlowView *)flowView {
-    return self.imageArray.count;
-}
-
-- (PGIndexBannerSubiew *)flowView:(NewPagedFlowView *)flowView cellForPageAtIndex:(NSInteger)index{
-    PGIndexBannerSubiew *bannerView = [flowView dequeueReusableCell];
-    if (!bannerView) {
-        bannerView = [[PGIndexBannerSubiew alloc] init];
-        bannerView.tag = index;
-        bannerView.layer.cornerRadius = 4;
-        bannerView.layer.masksToBounds = YES;
-    }
-    bannerView.mainImageView.image = self.imageArray[index];
-    return bannerView;
-}
 
 
 #pragma mark ======= 获取个人信息数据 =======
@@ -869,6 +821,17 @@
 }
 
 
+-(void)zxCycleScrollView:(ZXCycleScrollView *)scrollView didSelectItemAtIndex:(NSInteger)index {
+    if (self.bannerArr.count > 0) {
+        HomeBannerModel *model = [self.bannerArr objectAtIndex:index];
+        if (![model.url isEqualToString:@""]) {
+            TGWebViewController *web = [[TGWebViewController alloc] init];
+            web.url = [NSString stringWithFormat:@"%@",model.url];
+            web.webTitle = @"定位器";
+            [self.navigationController pushViewController:web animated:YES];
+        }
+    }
+}
 
 
 @end

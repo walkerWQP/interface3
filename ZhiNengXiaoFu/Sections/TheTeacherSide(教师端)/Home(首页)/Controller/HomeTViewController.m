@@ -7,8 +7,6 @@
 //
 
 #import "HomeTViewController.h"
-#import "NewPagedFlowView.h"
-#import "PGIndexBannerSubiew.h"
 #import "HomePageJingJiView.h"
 #import "WorkCell.h"
 #import "WorkTableViewCell.h"
@@ -20,7 +18,6 @@
 #import "NewDynamicsViewController.h"
 #import "TeacherNotifiedViewController.h"
 #import "HomeBannerModel.h"
-#import "DCCycleScrollView.h"
 #import "ConsultingViewController.h"
 #import "SchoolDongTaiViewController.h"
 #import "SchoolTongZhiViewController.h"
@@ -35,7 +32,7 @@
 #import "HomePageNumberModel.h"
 #import "ClassScheduleViewController.h"
 
-@interface HomeTViewController ()<NewPagedFlowViewDelegate, UITableViewDelegate, UITableViewDataSource, HomePageJingJiViewDelegate,DCCycleScrollViewDelegate>
+@interface HomeTViewController ()<UITableViewDelegate,UITableViewDataSource, HomePageJingJiViewDelegate,ZXCycleScrollViewDelegate>
 
 
 @property (nonatomic, strong) NSString            *schoolName;
@@ -46,7 +43,6 @@
 @property (nonatomic, strong) NSString            *className;
 @property (nonatomic, strong) NSMutableArray      *bannerArr;
 @property (nonatomic, strong) NSMutableArray      *imgArr;
-@property (nonatomic, strong) HW3DBannerView      *banner;
 @property (nonatomic, strong) NSMutableArray      *classArr;
 @property (nonatomic, strong) NSMutableArray      *activityArr;
 @property (nonatomic, strong) NSMutableArray      *tongzhiAry;
@@ -56,10 +52,17 @@
 @property (nonatomic, strong) UIImageView         *tongZhiImg;
 @property (nonatomic, strong) UIView              *FiveView;
 @property (nonatomic, strong) NSMutableArray      *numberAry;
+@property (nonatomic,strong) ZXCycleScrollView    *scrollView;
+
+
+
+
 
 @end
 
 @implementation HomeTViewController
+
+
 
 - (NSMutableArray *)numberAry {
     if (!_numberAry) {
@@ -373,31 +376,15 @@
         }
         
         self.automaticallyAdjustsScrollViewInsets = NO;
-        [self.banner removeAllSubviews];
-        [self.banner removeFromSuperview];
-        _banner = [HW3DBannerView initWithFrame:CGRectMake(0, 0, APP_WIDTH, 150) imageSpacing:10 imageWidth:APP_WIDTH - 50];
-        _banner.initAlpha = 0.5; // 设置两边卡片的透明度
-        _banner.imageRadius = 10; // 设置卡片圆角
-        _banner.imageHeightPoor = 10; // 设置中间卡片与两边卡片的高度差
-        // 设置要加载的图片
-        if (self.imgArr.count != 0) {
-            self.banner.data = self.imgArr;
-        }
-        _banner.placeHolderImage = [UIImage imageNamed:@"教师端活动管理banner"]; // 设置占位图片
-        [cell addSubview:self.banner];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        _banner.clickImageBlock = ^(NSInteger currentIndex) { // 点击中间图片的回调
-            
-        };
-//        self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenWidth, 150) shouldInfiniteLoop:YES imageGroups:self.imgArr];
-//        self.banner.autoScrollTimeInterval = 3;
-//        self.banner.autoScroll = YES;
-//        self.banner.isZoom = YES;
-//        self.banner.itemSpace = 0;
-//        self.banner.imgCornerRadius = 10;
-//        self.banner.itemWidth = self.view.frame.size.width - 100;
-//        self.banner.delegate = self;
-//        [cell addSubview:self.banner];
+        
+        [self.scrollView removeAllSubviews];
+        self.scrollView = [ZXCycleScrollView  initWithFrame:CGRectMake(0, 0, APP_WIDTH, 150) withMargnPadding:10 withImgWidth:APP_WIDTH - 40 dataArray:self.imgArr];
+        self.scrollView.delegate = self;
+        [cell addSubview:self.scrollView];
+        self.scrollView.otherPageControlColor = [UIColor blueColor];
+        self.scrollView.curPageControlColor = [UIColor whiteColor];
+        self.scrollView.sourceDataArr = self.imgArr;
+        self.scrollView.autoScroll = YES;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
         
@@ -742,12 +729,7 @@
     }
 }
 
-#pragma mark ======= 轮播图点击事件 =======
--(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    BannerModel *model = self.bannerArr[index];
-    NSLog(@"%@",model.ID);
-    NSLog(@"%@",model.url);
-}
+
 
 #pragma mark  - 点击通知图标
 - (void)tongzhiTap:(UITapGestureRecognizer *)sender {
@@ -818,16 +800,6 @@
     
 }
 
-#pragma mark NewPagedFlowView Delegate
-- (CGSize)sizeForPageInFlowView:(NewPagedFlowView *)flowView {
-    return CGSizeMake(APP_WIDTH - 60, (APP_WIDTH - 60) * 9 / 16);
-}
-
-
-- (void)didScrollToPage:(NSInteger)pageNumber inFlowView:(NewPagedFlowView *)flowView {
-    NSLog(@"ViewController 滚动到了第%ld页",pageNumber);
-}
-
 
 #pragma mark ======= 获取首页数据 =======
 
@@ -860,7 +832,6 @@
             self.dongtaiAry = [dataDic objectForKey:@"dynamic"];
             self.jingjiAry = [dataDic objectForKey:@"activity"];
             [self.HomePageJTabelView reloadData];
-
         } else {
             if ([[responseObject objectForKey:@"status"] integerValue] == 401 || [[responseObject objectForKey:@"status"] integerValue] == 402) {
                 [UserManager logoOut];
@@ -979,6 +950,23 @@
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
     }];
+}
+
+
+
+
+
+
+-(void)zxCycleScrollView:(ZXCycleScrollView *)scrollView didSelectItemAtIndex:(NSInteger)index {
+    if (self.bannerArr.count > 0) {
+        HomeBannerModel *model = [self.bannerArr objectAtIndex:index];
+        if (![model.url isEqualToString:@""]) {
+            TGWebViewController *web = [[TGWebViewController alloc] init];
+            web.url = [NSString stringWithFormat:@"%@",model.url];
+            web.webTitle = @"定位器";
+            [self.navigationController pushViewController:web animated:YES];
+        }
+    }
 }
 
 

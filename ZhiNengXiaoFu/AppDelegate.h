@@ -16,6 +16,10 @@ static NSString *channel = @"Publish channel";
 //极光推送的环境配置
 static BOOL isProduction = YES;
 
+//环信
+static NSString  *huanXinAppKey = @"1101181224097655#duxiu-keji-2018";
+
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

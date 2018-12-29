@@ -51,7 +51,6 @@
 #import <JPUSHService.h>
 #import "YYKit.h"
 #import "BlocksKit+UIKit.h"
-#import "HW3DBannerView.h"
 #import "TakePhoto.h"
 #import "STPickerDate.h"
 #import "NSCalendar+ST.h"
@@ -68,6 +67,8 @@
 #import "JhDownProgressView.h"
 #import "YCMenuView.h"
 #import "DateTimePickerView.h"
+#import <Hyphenate/Hyphenate.h>
+#import "ZXCycleScrollView.h"
 
 #define kIPhoneX ([UIScreen mainScreen].bounds.size.height == 812.0)
 
